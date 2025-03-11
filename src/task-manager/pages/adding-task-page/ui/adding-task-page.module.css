@@ -1,0 +1,18 @@
+.adding-task-page__form {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 20px;
+}
+
+.adding-task-page__text-field {
+    width: 300px;
+}
+
+.adding-task-page__date-field {
+    width: 300px;
+}
+
+.adding-task-page__button {
+    width: fit-content;
+}
