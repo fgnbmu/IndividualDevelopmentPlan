@@ -27,7 +27,7 @@ function App(): React.ReactNode {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path="/" element={<TasksListPage />} />
+          <Route path="/tasks-list" element={<TasksListPage />} />
           <Route path="/add-new-task" element={<AddingTaskPage />} />
           <Route path="/edit-task/:id" element={<EditingTaskPage />} />
           <Route path="*" element={<NotFoundPage />} />

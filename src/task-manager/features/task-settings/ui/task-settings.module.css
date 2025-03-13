@@ -1,0 +1,19 @@
+.task-settings__form {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 20px;
+    align-items: end;
+}
+
+.task-settings__text-field {
+    width: 300px;
+}
+
+.task-settings__date-field {
+    width: 300px;
+}
+
+.task-settings__button {
+    width: fit-content;
+}

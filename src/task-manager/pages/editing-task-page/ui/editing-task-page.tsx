@@ -1,6 +1,6 @@
 import React from "react";
 
-export const EditingTaskPage: React.FC = () => {
+export function EditingTaskPage(): React.ReactElement {
   return (
     <div>
       Редактирование задач
