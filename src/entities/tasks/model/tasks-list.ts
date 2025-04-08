@@ -1,16 +1,16 @@
 import { createEvent, createStore, sample } from 'effector';
-import { TaskParams } from '../types/task-params';
+import { TaskParams } from '../../../shared/types/task-params';
 
-export const $tasksList = createStore<TaskParams[]>([]);
+export const $tasks = createStore<TaskParams[]>([]);
 
 export const addingNewTaskEvent = createEvent<TaskParams>();
 
 sample({
   clock: addingNewTaskEvent,
-  source: $tasksList,
+  source: $tasks,
   fn: (prevTasks, newTask) => {
     const updatedTasksList = [...prevTasks, newTask];
     return updatedTasksList;
   },
-  target: $tasksList,
+  target: $tasks,
 });

@@ -1,4 +1,4 @@
-import { TaskParams } from "../../../types/task-params";
+import { TaskParams } from "../../../shared/types/task-params";
 
 export interface StatusTasksCardProps {
     tasksList: TaskParams[];
