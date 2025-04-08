@@ -1,0 +1,1 @@
+export const INITIAL_TASK_INDEX = 1;

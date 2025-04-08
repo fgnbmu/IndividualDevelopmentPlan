@@ -1,9 +1,12 @@
 import React from "react";
+import { TaskSettings } from "../../../features/task-settings";
+import styles from './adding-task-page.module.css';
 
-export const AddingTaskPage: React.FC = () => {
+export function AddingTaskPage(): React.ReactElement {
   return (
-    <div>
-      Добавить задачу
+    <div className={styles['adding-task']}>
+      <div>Создание задачи</div>
+      <TaskSettings/>
     </div>
-  )
+  );
 };

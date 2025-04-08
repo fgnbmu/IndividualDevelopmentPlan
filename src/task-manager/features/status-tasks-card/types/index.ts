@@ -1,0 +1,1 @@
+export { StatusTasksCardProps } from './status-tasks-card-props';
