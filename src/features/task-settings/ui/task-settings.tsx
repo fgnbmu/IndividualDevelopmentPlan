@@ -11,9 +11,9 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
 
-import { addingNewTaskEvent, $tasksList } from "../../../model/tasks-list";
+import { addingNewTaskEvent, $tasks } from "../../../entities/tasks/model/tasks-list";
 import { INITIAL_TASK_INDEX } from "../lib/constants";
-import { TaskStatuses } from "../../../types";
+import { TaskStatuses, TaskCategories } from "../../../shared/types";
 
 import styles from './task-settings.module.css';
 
@@ -40,7 +40,7 @@ export function TaskSettings(): React.ReactElement {
         category: taskCategory,
       });
     }
-    console.log($tasksList.getState());
+    console.log($tasks.getState());
   };
 
   return (
@@ -100,9 +100,9 @@ export function TaskSettings(): React.ReactElement {
           onChange={(e): void => setTaskCategory(e.target.value)}
           label="Категория задачи"
         >
-          <MenuItem value={'private'}>Личное</MenuItem>
-          <MenuItem value={'work'}>Работа</MenuItem>
-          <MenuItem value={'shoppingList'}>Список покупок</MenuItem>
+          <MenuItem value={TaskCategories.Private}>Личное</MenuItem>
+          <MenuItem value={TaskCategories.Work}>Работа</MenuItem>
+          <MenuItem value={TaskCategories.ShoppingList}>Список покупок</MenuItem>
         </Select>
       </FormControl>
       <Button 

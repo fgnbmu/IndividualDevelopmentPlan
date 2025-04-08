@@ -5,15 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from "@mui/material";
 import { AddBoxRounded } from '@mui/icons-material';
 
-import { $tasksList } from "../../../model/tasks-list";
-import { TaskParams } from "../../../types/task-params";
-import { StatusTasksCard } from "../../../features/status-tasks-card";
-import { TaskStatuses } from "../../../types";
+import { $tasks } from "../../../entities/tasks/model/tasks-list";
+import { TaskParams } from "../../../shared/types/task-params";
+import { StatusTasksCard } from "../../../widgets/status-tasks-card";
+import { TaskStatuses } from "../../../shared/types";
 
 import styles from './tasks-list-page.module.css';
 
 export function TasksListPage(): React.ReactElement {
-  const tasksList = useUnit<TaskParams[]>($tasksList);
+  const tasksList = useUnit<TaskParams[]>($tasks);
   const navigateTo = useNavigate();
 
   console.log(JSON.stringify(tasksList, null, 2));
