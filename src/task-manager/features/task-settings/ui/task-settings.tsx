@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { useUnit} from 'effector-react';
+import { useUnit } from 'effector-react';
+import { useNavigate } from 'react-router-dom';
 
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Button from '@mui/material/Button';
@@ -12,6 +13,7 @@ import dayjs from 'dayjs';
 
 import { addingNewTaskEvent, $tasksList } from "../../../model/tasks-list";
 import { INITIAL_TASK_INDEX } from "../lib/constants";
+import { TaskStatuses } from "../../../types";
 
 import styles from './task-settings.module.css';
 
@@ -20,9 +22,11 @@ export function TaskSettings(): React.ReactElement {
   const [taskDescription, setTaskDescription] = useState<string>('');
   const [taskDate, setTaskDate] = useState<dayjs.Dayjs | null>(null);
   const [taskStatus, setTaskStatus] = useState<string>('');
+  const [taskCategory, setTaskCategory] = useState<string>('');
   const newTaskIndex = useRef<number>(INITIAL_TASK_INDEX);
 
   const addingNewTask = useUnit(addingNewTaskEvent);
+  const navigateTo = useNavigate();
 
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -32,7 +36,8 @@ export function TaskSettings(): React.ReactElement {
         title: taskTitle, 
         date: taskDate.format('YYYY-MM-DD'), 
         status: taskStatus, 
-        description: taskDescription 
+        description: taskDescription,
+        category: taskCategory,
       });
     }
     console.log($tasksList.getState());
@@ -54,7 +59,7 @@ export function TaskSettings(): React.ReactElement {
         className={styles['task-settings__text-field']}
       />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateField // +время
+        <DateField
           value={taskDate}
           onChange={(newValue): void => setTaskDate(newValue)}
           label="Выберите дату" 
@@ -73,6 +78,7 @@ export function TaskSettings(): React.ReactElement {
       />
       <FormControl
         size="small"
+        className={styles['task-settings__select']}
       >
         <InputLabel>Статус задачи</InputLabel>
         <Select
@@ -80,9 +86,23 @@ export function TaskSettings(): React.ReactElement {
           onChange={(e): void => setTaskStatus(e.target.value)}
           label="Статус задачи"
         >
-          <MenuItem value={'Scheduled'}>Scheduled</MenuItem>
-          <MenuItem value={'Active'}>Active</MenuItem>
-          <MenuItem value={'Closed'}>Closed</MenuItem>
+          <MenuItem value={TaskStatuses.Scheduled}>Запланировано</MenuItem>
+          <MenuItem value={TaskStatuses.Active}>В процессе</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl
+        size="small"
+        className={styles['task-settings__select']}
+      >
+        <InputLabel>Категория задачи</InputLabel>
+        <Select
+          value={taskCategory}
+          onChange={(e): void => setTaskCategory(e.target.value)}
+          label="Категория задачи"
+        >
+          <MenuItem value={'private'}>Личное</MenuItem>
+          <MenuItem value={'work'}>Работа</MenuItem>
+          <MenuItem value={'shoppingList'}>Список покупок</MenuItem>
         </Select>
       </FormControl>
       <Button 
@@ -90,8 +110,8 @@ export function TaskSettings(): React.ReactElement {
         variant="contained" 
         color="primary"
         className={styles['task-settings__button']}
-        size="small"
-        disabled={!taskTitle || !taskDate} // продумать логику обновления кнопки
+        disabled={!taskTitle || !taskDate || !taskStatus} // Логика отключения кнопки ?
+        onClick={() => navigateTo("/tasks-list")}
       >
         Добавить задачу
       </Button>

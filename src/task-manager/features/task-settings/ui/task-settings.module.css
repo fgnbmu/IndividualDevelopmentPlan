@@ -4,14 +4,19 @@
     width: fit-content;
     gap: 20px;
     align-items: end;
+    width: 300px;
 }
 
 .task-settings__text-field {
-    width: 300px;
+    width: 100%;
+}
+
+.task-settings__select {
+    width: 100%;
 }
 
 .task-settings__date-field {
-    width: 300px;
+    width: 100%;
 }
 
 .task-settings__button {

@@ -1,16 +1,15 @@
 import { createEvent, createStore, sample } from 'effector';
-import { TaskFields } from '../types';
+import { TaskParams } from '../types/task-params';
 
-export const $tasksList = createStore<TaskFields[]>(JSON.parse(localStorage.getItem('tasksList') || '[]'));
+export const $tasksList = createStore<TaskParams[]>([]);
 
-export const addingNewTaskEvent = createEvent<TaskFields>();
+export const addingNewTaskEvent = createEvent<TaskParams>();
 
 sample({
   clock: addingNewTaskEvent,
   source: $tasksList,
   fn: (prevTasks, newTask) => {
     const updatedTasksList = [...prevTasks, newTask];
-    localStorage.setItem('tasksList', JSON.stringify(updatedTasksList));
     return updatedTasksList;
   },
   target: $tasksList,
