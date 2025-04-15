@@ -30,7 +30,7 @@ export function StatusTasksCard(props: StatusTasksCardProps): React.ReactElement
     <div className={styles['status-tasks-card__title']}>
       {statusTitle}
       {statusTitle === TaskStatuses.Scheduled && (
-        <IconButton color="primary" onClick={() => navigateTo("/new-task")}>
+        <IconButton color="primary" onClick={() => navigateTo("/task")}>
           <AddBoxRounded />
         </IconButton>
       )}
@@ -49,7 +49,7 @@ export function StatusTasksCard(props: StatusTasksCardProps): React.ReactElement
         />
         <CardContent>
           {tasksList.length === 0 ? (
-            <p>Задачи в списке отсутствуют.</p>
+            <span>Задачи в списке отсутствуют.</span> // текст должен отличаться
           ) : (
             <div className={styles['status-tasks-card__content']}>
               {tasksList.map((task) => (

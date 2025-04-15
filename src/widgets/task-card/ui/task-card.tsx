@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 import { Card, CardContent, CardHeader, IconButton } from "@mui/material";
 import styles from './task-card.module.css';
@@ -6,9 +7,13 @@ import { TaskCardProps } from "../types";
 import { TaskStatuses } from "../../../shared/types";
 import { ArrowCircleRight, CheckCircle, Edit } from "@mui/icons-material";
 import { updateTaskStatusEvent } from '../../../entities/tasks/model/tasks';
+import { useUnit } from 'effector-react';
 
 export function TaskCard(props: TaskCardProps): React.ReactElement {
   const { taskData } = props;
+
+  const updateTaskStatus = useUnit(updateTaskStatusEvent);
+  const navigateTo = useNavigate();
 
   const CardHeaderStyles = {
     padding: '2px 2px 5px 2px',
@@ -23,17 +28,26 @@ export function TaskCard(props: TaskCardProps): React.ReactElement {
       {taskData.title}
       <div className={styles['task-card__icons']}>
         {(taskData.status === TaskStatuses.Active || taskData.status === TaskStatuses.Scheduled) && (
-          <IconButton title="Редактировать">
+          <IconButton 
+            title="Редактировать" 
+            onClick={() => navigateTo(`/task/${taskData.id}`)}
+          >
             <Edit />
           </IconButton>
         )}
         {(taskData.status === TaskStatuses.Active) && (
-          <IconButton title="Завершить" onClick={() => updateTaskStatusEvent({id: taskData.id, newStatus: TaskStatuses.Closed})}>
+          <IconButton 
+            title="Завершить" 
+            onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Closed})}
+          >
             <CheckCircle color="primary" />
           </IconButton>
         )}
         {(taskData.status === TaskStatuses.Scheduled) && (
-          <IconButton title="Начать" onClick={() => updateTaskStatusEvent({id: taskData.id, newStatus: TaskStatuses.Active})}>
+          <IconButton 
+            title="Начать" 
+            onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Active})}
+          >
             <ArrowCircleRight color="primary" />
           </IconButton>
         )}
@@ -73,7 +87,7 @@ export function TaskCard(props: TaskCardProps): React.ReactElement {
       >
         <CardHeader
           sx={CardHeaderStyles}
-          title={taskTitle}
+          title={taskTitle} // настроить перенос строки
         />
         <CardContent
           sx={CardContentStyles}

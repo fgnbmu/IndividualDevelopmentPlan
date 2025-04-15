@@ -1,0 +1,32 @@
+.task-page {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 20px;
+    margin: 20px;
+}
+
+.task-page__form {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 20px;
+    align-items: end;
+    width: 300px;
+}
+
+.task-page__text-field {
+    width: 100%;
+}
+
+.task-page__select {
+    width: 100%;
+}
+
+.task-page__date-field {
+    width: 100%;
+}
+
+.task-page__button {
+    width: fit-content;
+}

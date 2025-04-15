@@ -8,7 +8,7 @@ export function MainPage(): React.ReactElement {
 
   return (
     <div>
-      <Button onClick={() => navigateTo("/new-task")}>
+      <Button onClick={() => navigateTo("/task")}>
         Создать задачу
       </Button>
     </div>
