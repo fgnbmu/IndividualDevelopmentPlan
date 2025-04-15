@@ -1,0 +1,39 @@
+.task-card {
+    background-color: #D4FFDF;
+    padding: 15px;
+}
+
+.task-card__title {
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.task-card__field {
+    font-size: 10px;
+    display: flex;
+    gap: 5px;
+    width: 216px;
+}
+
+.task-card__field-name {
+    color: #5F5F5F;
+}
+
+.task-card__field-value {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  width: 155px;
+}
+
+.task-card__icons {
+    display: flex;
+    gap: 5px;
+}

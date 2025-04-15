@@ -1,4 +1,19 @@
 .status-tasks-card {
     width: 300px;
-    background-color: #F6F6F6;
+    background-color: #F5F8F7;
+    border-radius: 20px;
+}
+
+.status-tasks-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.status-tasks-card__title {
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
 }

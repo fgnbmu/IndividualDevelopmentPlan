@@ -6,10 +6,6 @@
     padding: 50px;
 }
 
-.tasks-list__add-task-button {
-    width: fit-content;
-}
-
 .tasks-list__status-tasks-cards {
     display: flex;
     gap: 50px;

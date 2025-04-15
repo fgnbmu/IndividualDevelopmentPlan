@@ -1,8 +1,8 @@
 export interface TaskParams {
-    id: number;
+    id: string;
     title: string;
     date: string;
     description?: string;
-    status?: string;
+    status: string;
     category?: string;
 };
