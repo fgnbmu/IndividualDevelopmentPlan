@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useUnit } from 'effector-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,9 +10,9 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
+import { v4 as uuidv4 } from 'uuid';
 
-import { addingNewTaskEvent, $tasks } from "../../../entities/tasks/model/tasks-list";
-import { INITIAL_TASK_INDEX } from "../lib/constants";
+import { addingNewTaskEvent, $tasks } from "../../../entities/tasks/model/tasks";
 import { TaskStatuses, TaskCategories } from "../../../shared/types";
 
 import styles from './task-settings.module.css';
@@ -23,7 +23,6 @@ export function TaskSettings(): React.ReactElement {
   const [taskDate, setTaskDate] = useState<dayjs.Dayjs | null>(null);
   const [taskStatus, setTaskStatus] = useState<string>('');
   const [taskCategory, setTaskCategory] = useState<string>('');
-  const newTaskIndex = useRef<number>(INITIAL_TASK_INDEX);
 
   const addingNewTask = useUnit(addingNewTaskEvent);
   const navigateTo = useNavigate();
@@ -32,7 +31,7 @@ export function TaskSettings(): React.ReactElement {
     event.preventDefault();
     if (taskTitle && taskDate) {
       addingNewTask({ 
-        id: newTaskIndex.current++,
+        id: uuidv4(),
         title: taskTitle, 
         date: taskDate.format('YYYY-MM-DD'), 
         status: taskStatus, 

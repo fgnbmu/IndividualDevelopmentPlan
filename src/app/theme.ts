@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#830062',
+      main: '#006838',
     },
     secondary: {
       main: '#dc004e',
@@ -11,6 +11,35 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: 'Montserrat, Arial, sans-serif',
-    fontSize: 12,
+    fontSize: 10,
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#F9F9F9',
+          borderRadius: '15px',
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+          padding: '15px',
+        },
+      },
+    },
+    MuiCardHeader: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
+          fontSize: 10,
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          minWidth: '0px', 
+          padding: '0px',
+          borderRadius: '2px'
+        },
+      },
+    },
   },
 });

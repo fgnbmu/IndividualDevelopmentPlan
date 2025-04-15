@@ -1,11 +1,7 @@
 import React from "react";
 import { useUnit } from "effector-react";
-import { useNavigate } from 'react-router-dom';
 
-import { Button } from "@mui/material";
-import { AddBoxRounded } from '@mui/icons-material';
-
-import { $tasks } from "../../../entities/tasks/model/tasks-list";
+import { $tasks } from "../../../entities/tasks/model/tasks";
 import { TaskParams } from "../../../shared/types/task-params";
 import { StatusTasksCard } from "../../../widgets/status-tasks-card";
 import { TaskStatuses } from "../../../shared/types";
@@ -14,37 +10,26 @@ import styles from './tasks-list-page.module.css';
 
 export function TasksListPage(): React.ReactElement {
   const tasksList = useUnit<TaskParams[]>($tasks);
-  const navigateTo = useNavigate();
 
   console.log(JSON.stringify(tasksList, null, 2));
   
-  const scheduledTasksList = tasksList.filter(task => task.status === TaskStatuses.Scheduled);
-  const activeTasksList = tasksList.filter(task => task.status === TaskStatuses.Active);
-  const closedTasksList = tasksList.filter(task => task.status === TaskStatuses.Closed);
+  const taskLists = {
+    [TaskStatuses.Scheduled]: tasksList.filter(task => task.status === TaskStatuses.Scheduled),
+    [TaskStatuses.Active]: tasksList.filter(task => task.status === TaskStatuses.Active),
+    [TaskStatuses.Closed]: tasksList.filter(task => task.status === TaskStatuses.Closed),
+  };
 
   return (
     <div className={styles['tasks-list']}>
       Список задач
-      <Button
-        startIcon={<AddBoxRounded/>}
-        onClick={() => navigateTo("/new-task")}
-        className={styles['tasks-list__add-task-button']}
-      >
-        Добавить задачу
-      </Button>
       <div className={styles['tasks-list__status-tasks-cards']}>
-        <StatusTasksCard 
-          tasksList={scheduledTasksList} 
-          statusTitle={TaskStatuses.Scheduled}>
-        </StatusTasksCard>
-        <StatusTasksCard
-          tasksList={activeTasksList}
-          statusTitle={TaskStatuses.Active}>
-        </StatusTasksCard>
-        <StatusTasksCard 
-          tasksList={closedTasksList} 
-          statusTitle={TaskStatuses.Closed}>
-        </StatusTasksCard>
+        {Object.entries(taskLists).map(([status, tasks]) => (
+          <StatusTasksCard 
+            key={status} 
+            tasksList={tasks} 
+            statusTitle={status}
+          />
+        ))}
       </div>
     </div>
   );
