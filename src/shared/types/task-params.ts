@@ -5,4 +5,5 @@ export interface TaskParams {
     description?: string;
     status: string;
     category?: string;
+    assignee?: string[];
 };

@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { Card, CardContent, CardHeader, IconButton } from "@mui/material";
+import { Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
 import styles from './task-card.module.css';
 import { TaskCardProps } from "../types";
 import { TaskStatuses } from "../../../shared/types";
-import { ArrowCircleRight, CheckCircle, Edit } from "@mui/icons-material";
-import { updateTaskStatusEvent } from '../../../entities/tasks/model/tasks';
+import { ArrowCircleRight, CheckCircle, DeleteOutline, Edit } from "@mui/icons-material";
+import { deleteTaskEvent, updateTaskStatusEvent } from '../../../entities/tasks';
 import { useUnit } from 'effector-react';
 
 export function TaskCard(props: TaskCardProps): React.ReactElement {
   const { taskData } = props;
 
   const updateTaskStatus = useUnit(updateTaskStatusEvent);
+  const [isDeleteTaskModalVisible, setIsDeleteTaskModalVisible] = useState<boolean>(false);
+
   const navigateTo = useNavigate();
 
   const CardHeaderStyles = {
@@ -51,11 +53,22 @@ export function TaskCard(props: TaskCardProps): React.ReactElement {
             <ArrowCircleRight color="primary" />
           </IconButton>
         )}
+        <IconButton
+          title="Удалить"
+          onClick={(): void => setIsDeleteTaskModalVisible(true)}
+        >
+          <DeleteOutline />
+        </IconButton>
       </div>
     </div>
   );
 
-  const getBackgroundColor = (status: string) => {
+  const handleDeleteTask = (): void => {
+    deleteTaskEvent(taskData.id);
+    setIsDeleteTaskModalVisible(false);
+  };
+
+  const getBackgroundColor = (status: string): string => {
     switch (status) {
       case TaskStatuses.Closed:
         return '#FFE2E2';
@@ -76,8 +89,9 @@ export function TaskCard(props: TaskCardProps): React.ReactElement {
 
   const taskFields = [
     { name: "Дата", value: taskData.date },
-    { name: "Описание", value: taskData.description },
-    { name: "Категория", value: taskData.category }
+    { name: "Описание", value: taskData.description?.trim() || 'Не указано' },
+    { name: "Категория", value: taskData.category?.trim() || 'Не указана' },
+    { name: "Ответственный", value: taskData.assignee?.join(', ') || 'Не указан' },
   ];
 
   return (
@@ -102,6 +116,25 @@ export function TaskCard(props: TaskCardProps): React.ReactElement {
           </div>
         </CardContent>
       </Card>
+      <Dialog
+        open={isDeleteTaskModalVisible}
+        onClose={(): void => setIsDeleteTaskModalVisible(false)}
+      >
+        <DialogTitle>Подтверждение удаления</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Вы действительно хотите удалить задачу "{taskData.title}"?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={(): void => setIsDeleteTaskModalVisible(false)} color="inherit">
+            Отмена
+          </Button>
+          <Button onClick={handleDeleteTask} color="error">
+            Удалить
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

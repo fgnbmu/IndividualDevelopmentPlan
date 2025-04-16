@@ -3,7 +3,7 @@ import styles from './task-page.module.css';
 import { useUnit } from 'effector-react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent } from "@mui/material";
 import Button from '@mui/material/Button';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addingNewTaskEvent, fetchTaskEffect, fetchTaskEvent } from "../../../entities/tasks/model/tasks";
+import { addingNewTaskEvent, fetchTaskEffect, fetchTaskEvent, USERS_MOCK_DATA } from "../../../entities/tasks";
 import { TaskStatuses, TaskCategories } from "../../../shared/types";
 
 export function TaskPage(): React.ReactElement {
@@ -22,6 +22,7 @@ export function TaskPage(): React.ReactElement {
   const [taskDate, setTaskDate] = useState<dayjs.Dayjs | null>(null);
   const [taskStatus, setTaskStatus] = useState<string>('');
   const [taskCategory, setTaskCategory] = useState<string>('');
+  const [taskAssignee, setTaskAssignee] = useState<string[]>([]);
 
   const { id } = useParams<{ id: string }>();
   const [addingNewTask, fetchTask] = useUnit([addingNewTaskEvent, fetchTaskEvent]);
@@ -40,8 +41,18 @@ export function TaskPage(): React.ReactElement {
       setTaskDate(dayjs(result.date));
       setTaskStatus(result.status);
       setTaskCategory(result.category || '');
+      setTaskAssignee(result.assignee || []);
     }
   });
+
+  const handleChangeAssignee = (event: SelectChangeEvent<typeof taskAssignee>) => {
+    const {
+      target: { value },
+    } = event;
+    setTaskAssignee(
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
 
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -54,6 +65,7 @@ export function TaskPage(): React.ReactElement {
         status: taskStatus, 
         description: taskDescription,
         category: taskCategory,
+        assignee: taskAssignee,
       });
       navigateTo("/tasks-list");
     }
@@ -75,15 +87,6 @@ export function TaskPage(): React.ReactElement {
           size="small"
           className={styles['task-page__text-field']}
         />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateField
-            value={taskDate}
-            onChange={(newValue): void => setTaskDate(newValue)}
-            label="Выберите дату" 
-            size="small"
-            className={styles['task-page__date-field']}
-          />
-        </LocalizationProvider>
         <TextField 
           value={taskDescription}
           onChange={(e): void => setTaskDescription(e.target.value)}
@@ -93,6 +96,15 @@ export function TaskPage(): React.ReactElement {
           size="small"
           className={styles['task-page__text-field']}
         />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateField
+            value={taskDate}
+            onChange={(newValue): void => setTaskDate(newValue)}
+            label="Выберите дату" 
+            size="small"
+            className={styles['task-page__date-field']}
+          />
+        </LocalizationProvider>
         <FormControl
           size="small"
           className={styles['task-page__select']}
@@ -103,8 +115,27 @@ export function TaskPage(): React.ReactElement {
             onChange={(e): void => setTaskStatus(e.target.value)}
             label="Статус задачи"
           >
-            <MenuItem value={TaskStatuses.Scheduled}>Запланировано</MenuItem>
-            <MenuItem value={TaskStatuses.Active}>В процессе</MenuItem>
+            <MenuItem value={TaskStatuses.Scheduled}>{TaskStatuses.Scheduled}</MenuItem>
+            <MenuItem value={TaskStatuses.Active}>{TaskStatuses.Active}</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl className={styles['task-page__select']}>
+          <InputLabel id="demo-multiple-checkbox-label">Ответственный</InputLabel>
+          <Select
+            labelId="demo-multiple-checkbox-label"
+            id="demo-multiple-checkbox"
+            multiple
+            value={taskAssignee}
+            onChange={handleChangeAssignee}
+            input={<OutlinedInput label="Ответственный" />}
+            renderValue={(selected) => selected.join(', ')}
+          >
+            {USERS_MOCK_DATA.map((name) => (
+              <MenuItem key={name} value={name}>
+                <Checkbox checked={taskAssignee.includes(name)} />
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl
@@ -117,9 +148,9 @@ export function TaskPage(): React.ReactElement {
             onChange={(e): void => setTaskCategory(e.target.value)}
             label="Категория задачи"
           >
-            <MenuItem value={TaskCategories.Private}>Личное</MenuItem>
-            <MenuItem value={TaskCategories.Work}>Работа</MenuItem>
-            <MenuItem value={TaskCategories.ShoppingList}>Список покупок</MenuItem>
+            <MenuItem value={TaskCategories.Private}>{TaskCategories.Private}</MenuItem>
+            <MenuItem value={TaskCategories.Work}>{TaskCategories.Work}</MenuItem>
+            <MenuItem value={TaskCategories.ShoppingList}>{TaskCategories.ShoppingList}</MenuItem>
           </Select>
         </FormControl>
         <Button 
@@ -129,7 +160,7 @@ export function TaskPage(): React.ReactElement {
           className={styles['task-page__button']}
           disabled={!taskTitle || !taskDate || !taskStatus}
         >
-          {id ? 'Сохранить изменения' : 'Добавить задачу'}
+          {id ? 'Сохранить изменения' : 'Создать задачу'}
         </Button>
       </Box>
     </div>
