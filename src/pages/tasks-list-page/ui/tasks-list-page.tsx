@@ -1,7 +1,7 @@
 import React from "react";
 import { useUnit } from "effector-react";
 
-import { $tasks } from "../../../entities/tasks/model/tasks";
+import { $tasks } from "../../../entities/tasks";
 import { TaskParams } from "../../../shared/types/task-params";
 import { StatusTasksCard } from "../../../widgets/status-tasks-card";
 import { TaskStatuses } from "../../../shared/types";

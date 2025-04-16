@@ -6,6 +6,7 @@ export const $tasks = createStore<TaskParams[]>([]);
 export const addingNewTaskEvent = createEvent<TaskParams>();
 export const updateTaskStatusEvent = createEvent<{ id: string; newStatus: string }>();
 export const fetchTaskEvent = createEvent<string>();
+export const deleteTaskEvent = createEvent<string>();
 
 export const fetchTaskEffect = createEffect<string, TaskParams | undefined, Error>(async (id) => {
   const tasks = await $tasks.getState();
@@ -45,3 +46,14 @@ sample({
   clock: fetchTaskEvent,
   target: fetchTaskEffect,
 });
+
+sample({
+  clock: deleteTaskEvent,
+  source: $tasks,
+  fn: (prevTasks, id) => {
+    return prevTasks.filter(task => task.id !== id);
+  },
+  target: $tasks,
+});
+
+
