@@ -16,7 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { addingNewTaskEvent, fetchTaskEffect, fetchTaskEvent, USERS_MOCK_DATA } from "../../../entities/tasks";
 import { TaskStatuses, TaskCategories } from "../../../shared/types";
 
-export function TaskPage(): React.ReactElement {
+export const TaskPage = (): React.ReactElement => {
   const [taskTitle, setTaskTitle] = useState<string>('');
   const [taskDescription, setTaskDescription] = useState<string>('');
   const [taskDate, setTaskDate] = useState<dayjs.Dayjs | null>(null);
@@ -45,7 +45,7 @@ export function TaskPage(): React.ReactElement {
     }
   });
 
-  const handleChangeAssignee = (event: SelectChangeEvent<typeof taskAssignee>) => {
+  const handleChangeAssignee = (event: SelectChangeEvent<typeof taskAssignee>): void => {
     const {
       target: { value },
     } = event;

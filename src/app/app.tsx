@@ -5,7 +5,7 @@ import './app.css';
 import { theme } from './theme';
 import { router } from './router';
 
-export function App(): React.ReactElement {
+export const App = (): React.ReactElement => {
   return (
     <ThemeProvider theme={theme}>
       <RouterProvider router={router} />

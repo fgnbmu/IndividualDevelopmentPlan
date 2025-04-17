@@ -1,6 +1,6 @@
 import React from "react";
 
-export function NotFoundPage(): React.ReactElement {
+export const NotFoundPage = (): React.ReactElement => {
   return (
     <div>
       Ошибка 404

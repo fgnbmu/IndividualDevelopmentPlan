@@ -8,7 +8,7 @@ import { TaskStatuses } from "../../../shared/types";
 
 import styles from './tasks-list-page.module.css';
 
-export function TasksListPage(): React.ReactElement {
+export const TasksListPage = (): React.ReactElement => {
   const tasksList = useUnit<TaskParams[]>($tasks);
 
   console.log(JSON.stringify(tasksList, null, 2));
