@@ -1,21 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 
-import { Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
+import { Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import styles from './task-card.module.css';
 import { TaskCardProps } from "../types";
-import { TaskStatuses } from "../../../shared/types";
-import { ArrowCircleRight, CheckCircle, DeleteOutline, Edit } from "@mui/icons-material";
-import { deleteTaskEvent, updateTaskStatusEvent } from '../../../entities/tasks';
-import { useUnit } from 'effector-react';
+import { deleteTaskEvent } from '../../../entities/tasks';
+import { getTaskCardBackgroundColor, getTaskCardFields } from "../lib/utils";
+import { TaskCardTitle } from "./task-card-title";
 
-export function TaskCard(props: TaskCardProps): React.ReactElement {
+export const TaskCard = (props: TaskCardProps): React.ReactElement => {
   const { taskData } = props;
 
-  const updateTaskStatus = useUnit(updateTaskStatusEvent);
   const [isDeleteTaskModalVisible, setIsDeleteTaskModalVisible] = useState<boolean>(false);
-
-  const navigateTo = useNavigate();
 
   const CardHeaderStyles = {
     padding: '2px 2px 5px 2px',
@@ -25,42 +20,17 @@ export function TaskCard(props: TaskCardProps): React.ReactElement {
     padding: '2px',
   };
 
+  const TaskStyles = {
+    backgroundColor: getTaskCardBackgroundColor(taskData.status),
+    padding: '8px 10px 0px 10px',
+    width: '220px',
+  }
+
   const taskTitle: React.ReactElement = (
-    <div className={styles['task-card__title']}>
-      {taskData.title}
-      <div className={styles['task-card__icons']}>
-        {(taskData.status === TaskStatuses.Active || taskData.status === TaskStatuses.Scheduled) && (
-          <IconButton 
-            title="Редактировать" 
-            onClick={() => navigateTo(`/task/${taskData.id}`)}
-          >
-            <Edit />
-          </IconButton>
-        )}
-        {(taskData.status === TaskStatuses.Active) && (
-          <IconButton 
-            title="Завершить" 
-            onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Closed})}
-          >
-            <CheckCircle color="primary" />
-          </IconButton>
-        )}
-        {(taskData.status === TaskStatuses.Scheduled) && (
-          <IconButton 
-            title="Начать" 
-            onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Active})}
-          >
-            <ArrowCircleRight color="primary" />
-          </IconButton>
-        )}
-        <IconButton
-          title="Удалить"
-          onClick={(): void => setIsDeleteTaskModalVisible(true)}
-        >
-          <DeleteOutline />
-        </IconButton>
-      </div>
-    </div>
+    <TaskCardTitle
+      taskData={taskData}
+      onDeleteButtonClick={() => setIsDeleteTaskModalVisible(true)}
+    />
   );
 
   const handleDeleteTask = (): void => {
@@ -68,31 +38,7 @@ export function TaskCard(props: TaskCardProps): React.ReactElement {
     setIsDeleteTaskModalVisible(false);
   };
 
-  const getBackgroundColor = (status: string): string => {
-    switch (status) {
-      case TaskStatuses.Closed:
-        return '#FFE2E2';
-      case TaskStatuses.Active:
-        return '#CAFFCD';
-      case TaskStatuses.Scheduled:
-        return '#D7F1FF';
-      default:
-        return '#FFFFFF';
-    }
-  };
-
-  const TaskStyles = {
-    backgroundColor: getBackgroundColor(taskData.status),
-    padding: '8px 10px 0px 10px',
-    width: '220px',
-  }
-
-  const taskFields = [
-    { name: "Дата", value: taskData.date },
-    { name: "Описание", value: taskData.description?.trim() || 'Не указано' },
-    { name: "Категория", value: taskData.category?.trim() || 'Не указана' },
-    { name: "Ответственный", value: taskData.assignee?.join(', ') || 'Не указан' },
-  ];
+  const taskFields = getTaskCardFields(taskData);
 
   return (
     <div>
