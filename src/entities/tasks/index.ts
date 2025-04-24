@@ -4,7 +4,7 @@ export {
     updateTaskStatusEvent, 
     fetchTaskEvent,
     fetchTaskEffect, 
-    deleteTaskEvent,
+    removeTaskEvent,
 } from './model/tasks';
 
 export { USERS_MOCK_DATA } from './lib/constants';

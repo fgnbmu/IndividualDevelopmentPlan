@@ -10,8 +10,6 @@ import styles from './tasks-list-page.module.css';
 
 export const TasksListPage = (): React.ReactElement => {
   const tasksList = useUnit<TaskParams[]>($tasks);
-
-  console.log(JSON.stringify(tasksList, null, 2));
   
   const taskLists = {
     [TaskStatuses.Scheduled]: tasksList.filter(task => task.status === TaskStatuses.Scheduled),
