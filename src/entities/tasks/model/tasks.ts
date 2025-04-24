@@ -1,12 +1,13 @@
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { TaskParams } from '../../../shared/types/task-params';
+import { TASKS_MOCK_DATA } from '../lib/constants/tasks-mock-data';
 
-export const $tasks = createStore<TaskParams[]>([]);
+export const $tasks = createStore<TaskParams[]>(TASKS_MOCK_DATA);
 
 export const addingNewTaskEvent = createEvent<TaskParams>();
 export const updateTaskStatusEvent = createEvent<{ id: string; newStatus: string }>();
 export const fetchTaskEvent = createEvent<string>();
-export const deleteTaskEvent = createEvent<string>();
+export const removeTaskEvent = createEvent<string>();
 
 export const fetchTaskEffect = createEffect<string, TaskParams | undefined, Error>(async (id) => {
   const tasks = await $tasks.getState();
@@ -48,7 +49,7 @@ sample({
 });
 
 sample({
-  clock: deleteTaskEvent,
+  clock: removeTaskEvent,
   source: $tasks,
   fn: (prevTasks, id) => {
     return prevTasks.filter(task => task.id !== id);

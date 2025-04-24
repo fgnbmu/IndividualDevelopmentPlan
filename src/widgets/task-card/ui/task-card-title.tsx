@@ -9,7 +9,7 @@ import { updateTaskStatusEvent } from "../../../entities/tasks";
 import { TaskCardTitleProps } from "../types";
 
 export const TaskCardTitle = (props: TaskCardTitleProps): React.ReactElement => {
-  const { taskData, onDeleteButtonClick } = props;
+  const { taskData, onRemoveButtonClick } = props;
 
   const updateTaskStatus = useUnit(updateTaskStatusEvent);
   const navigateTo = useNavigate();
@@ -44,7 +44,7 @@ export const TaskCardTitle = (props: TaskCardTitleProps): React.ReactElement => 
       )}
       <IconButton
         title="Удалить"
-        onClick={onDeleteButtonClick}
+        onClick={onRemoveButtonClick}
       >
         <DeleteOutline />
       </IconButton>

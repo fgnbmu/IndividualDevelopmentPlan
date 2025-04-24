@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 
-import { Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Card, CardContent, CardHeader } from "@mui/material";
 import styles from './task-card.module.css';
 import { TaskCardProps } from "../types";
-import { deleteTaskEvent } from '../../../entities/tasks';
+import { removeTaskEvent } from '../../../entities/tasks';
 import { getTaskCardBackgroundColor, getTaskCardFields } from "../lib/utils";
 import { TaskCardTitle } from "./task-card-title";
+import { RemoveTaskModal } from "./remove-task-modal";
 
 export const TaskCard = (props: TaskCardProps): React.ReactElement => {
   const { taskData } = props;
 
-  const [isDeleteTaskModalVisible, setIsDeleteTaskModalVisible] = useState<boolean>(false);
+  const [isRemoveTaskModalVisible, setIsRemoveTaskModalVisible] = useState<boolean>(false);
 
   const CardHeaderStyles = {
     padding: '2px 2px 5px 2px',
@@ -29,13 +30,13 @@ export const TaskCard = (props: TaskCardProps): React.ReactElement => {
   const taskTitle: React.ReactElement = (
     <TaskCardTitle
       taskData={taskData}
-      onDeleteButtonClick={() => setIsDeleteTaskModalVisible(true)}
+      onRemoveButtonClick={(): void => setIsRemoveTaskModalVisible(true)}
     />
   );
 
-  const handleDeleteTask = (): void => {
-    deleteTaskEvent(taskData.id);
-    setIsDeleteTaskModalVisible(false);
+  const handleRemoveTask = (): void => {
+    removeTaskEvent(taskData.id);
+    setIsRemoveTaskModalVisible(false);
   };
 
   const taskFields = getTaskCardFields(taskData);
@@ -62,25 +63,12 @@ export const TaskCard = (props: TaskCardProps): React.ReactElement => {
           </div>
         </CardContent>
       </Card>
-      <Dialog
-        open={isDeleteTaskModalVisible}
-        onClose={(): void => setIsDeleteTaskModalVisible(false)}
-      >
-        <DialogTitle>Подтверждение удаления</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Вы действительно хотите удалить задачу "{taskData.title}"?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={(): void => setIsDeleteTaskModalVisible(false)} color="inherit">
-            Отмена
-          </Button>
-          <Button onClick={handleDeleteTask} color="error">
-            Удалить
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <RemoveTaskModal
+        isVisible={isRemoveTaskModalVisible}
+        taskTitle={taskData.title}
+        onClose={(): void => setIsRemoveTaskModalVisible(false)}
+        onConfirm={handleRemoveTask}
+      />
     </div>
   );
 };
