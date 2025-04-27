@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { IconButton } from "@mui/material"
+import { IconButton, Tooltip } from "@mui/material"
 import { TaskStatuses } from "../../../shared/types"
 import { AddBoxRounded } from "@mui/icons-material"
 import styles from './status-tasks-card.module.css';
@@ -15,9 +15,11 @@ export const StatusTasksCardTitle = (props: StatusTasksCardTitleProps): React.Re
     <div className={styles['status-tasks-card__title']}>
       {statusTitle}
       {statusTitle === TaskStatuses.Scheduled && (
-        <IconButton color="primary" onClick={() => navigateTo("/task")}>
-          <AddBoxRounded />
-        </IconButton>
+        <Tooltip title="Добавить задачу">
+          <IconButton color="primary" onClick={() => navigateTo("/task")}>
+            <AddBoxRounded />
+          </IconButton>
+        </Tooltip>
       )}
     </div>
   )

@@ -1,6 +1,8 @@
 .task-card {
-    background-color: #D4FFDF;
-    padding: 15px;
+    /* background-color: #D4FFDF; */
+    /* padding: 15px; */
+    /* border-radius: 15px; */
+    /* box-shadow: none; */
 }
 
 .task-card__title {

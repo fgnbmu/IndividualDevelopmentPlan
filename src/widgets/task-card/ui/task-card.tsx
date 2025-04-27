@@ -23,8 +23,8 @@ export const TaskCard = (props: TaskCardProps): React.ReactElement => {
 
   const TaskStyles = {
     backgroundColor: getTaskCardBackgroundColor(taskData.status),
-    padding: '8px 10px 0px 10px',
-    width: '220px',
+    padding: '15px 15px 0px 15px',
+    width: '250px',
   }
 
   const taskTitle: React.ReactElement = (
@@ -42,13 +42,13 @@ export const TaskCard = (props: TaskCardProps): React.ReactElement => {
   const taskFields = getTaskCardFields(taskData);
 
   return (
-    <div>
+    <div className={styles['task-card']}>
       <Card
         sx={TaskStyles}
       >
         <CardHeader
           sx={CardHeaderStyles}
-          title={taskTitle} // настроить перенос строки
+          title={taskTitle}
         />
         <CardContent
           sx={CardContentStyles}

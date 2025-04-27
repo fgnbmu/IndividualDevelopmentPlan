@@ -1,1 +1,1 @@
-export { USERS_MOCK_DATA } from './users-mock-data';
+export { TASKS_MOCK_DATA } from './tasks-mock-data';

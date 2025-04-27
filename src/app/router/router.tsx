@@ -4,11 +4,13 @@ import { MainPage } from '../../pages/main-page';
 import { TasksListPage } from '../../pages/tasks-list-page';
 import { NotFoundPage } from '../../pages/not-found-page';
 import { TaskPage } from '../../pages/task-page';
+import { AuthPage } from '../../pages/auth-page';
+
 
 export const router = createBrowserRouter([
     {
       path: '/',
-      element: <MainPage />,
+      element: <AuthPage />,
     },
     {
       path: '/tasks-list',

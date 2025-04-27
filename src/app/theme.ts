@@ -41,5 +41,22 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: '#DAEFE6',
+          color: '#96A09C'
+        },
+      },
+    },
+    // MuiSnackbar: {
+    //   styleOverrides: {
+    //     root: {
+    //       backgroundColor: '#323232',
+    //       color: '#ffffff',
+    //       borderRadius: '8px',
+    //     },
+    //   },
+    // },
   },
 });

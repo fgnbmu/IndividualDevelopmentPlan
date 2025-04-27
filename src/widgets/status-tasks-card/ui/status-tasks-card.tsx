@@ -10,23 +10,24 @@ import { StatusTasksCardTitle } from "./status-tasks-card-title";
 export const StatusTasksCard = (props: StatusTasksCardProps): React.ReactElement => {
   const { tasksList, statusTitle } = props;
 
-  const TasksCardStyles = {
-    width: 250,
-    padding: '10px',
+  const StatusTasksCardStyles = {
+    width: 300,
+    padding: '20px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#EFF2F7'
   };
 
   const TasksCardHeaderStyles = {
-    padding: '10px',
-    width: '240px'
+    padding: '10px 0px',
+    width: '100%',
   };
 
   return (
     <div>
       <Card
-        sx={TasksCardStyles}
+        sx={StatusTasksCardStyles}
         className={styles['status-tasks-card']}
       >
         <CardHeader
@@ -35,7 +36,7 @@ export const StatusTasksCard = (props: StatusTasksCardProps): React.ReactElement
         />
         <CardContent>
           {tasksList.length === 0 ? (
-            <span>Задачи в списке отсутствуют.</span> // текст должен отличаться
+            <span>Задачи в списке отсутствуют.</span>
           ) : (
             <div className={styles['status-tasks-card__content']}>
               {tasksList.map((task) => (
