@@ -1,0 +1,1 @@
+export { USERS_MOCK_DATA } from './users-mock-data';

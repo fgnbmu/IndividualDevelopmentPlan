@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { TaskParams } from '../../../shared/types/task-params';
-import { TASKS_MOCK_DATA } from '../lib/constants/tasks-mock-data';
+import { TASKS_MOCK_DATA } from '../lib/constants';
 
 export const $tasks = createStore<TaskParams[]>(TASKS_MOCK_DATA);
 

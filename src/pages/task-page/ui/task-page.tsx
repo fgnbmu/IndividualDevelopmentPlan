@@ -13,8 +13,9 @@ import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addingNewTaskEvent, fetchTaskEffect, fetchTaskEvent, USERS_MOCK_DATA } from "../../../entities/tasks";
+import { addingNewTaskEvent, fetchTaskEffect, fetchTaskEvent } from "../../../entities/tasks";
 import { TaskStatuses, TaskCategories } from "../../../shared/types";
+import { USERS_MOCK_DATA } from "../../../entities/users";
 
 export const TaskPage = (): React.ReactElement => {
   const [taskTitle, setTaskTitle] = useState<string>('');
@@ -130,8 +131,8 @@ export const TaskPage = (): React.ReactElement => {
             input={<OutlinedInput label="Ответственный" />}
             renderValue={(selected) => selected.join(', ')}
           >
-            {USERS_MOCK_DATA.map((name) => (
-              <MenuItem key={name} value={name}>
+            {USERS_MOCK_DATA.map(({name, id}) => (
+              <MenuItem key={id} value={name}>
                 <Checkbox checked={taskAssignee.includes(name)} />
                 <ListItemText primary={name} />
               </MenuItem>

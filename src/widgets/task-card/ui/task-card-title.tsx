@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './task-card.module.css';
 import { TaskStatuses } from "../../../shared/types";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import { Edit, CheckCircle, ArrowCircleRight, DeleteOutline } from "@mui/icons-material";
 import { useNavigate } from 'react-router-dom';
 import { useUnit } from "effector-react";
@@ -19,35 +19,39 @@ export const TaskCardTitle = (props: TaskCardTitleProps): React.ReactElement => 
     {taskData.title}
     <div className={styles['task-card__icons']}>
       {(taskData.status === TaskStatuses.Active || taskData.status === TaskStatuses.Scheduled) && (
-        <IconButton 
-          title="Редактировать" 
-          onClick={() => navigateTo(`/task/${taskData.id}`)}
-        >
-          <Edit />
-        </IconButton>
+        <Tooltip title="Редактировать" >
+          <IconButton 
+            onClick={() => navigateTo(`/task/${taskData.id}`)}
+          >
+            <Edit />
+          </IconButton>
+        </Tooltip>
       )}
       {(taskData.status === TaskStatuses.Active) && (
-        <IconButton 
-          title="Завершить" 
-          onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Closed})}
-        >
-          <CheckCircle color="primary" />
-        </IconButton>
+        <Tooltip title="Завершить" >
+          <IconButton 
+            onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Closed})}
+          >
+            <CheckCircle color="primary" />
+          </IconButton>
+        </Tooltip>
       )}
       {(taskData.status === TaskStatuses.Scheduled) && (
-        <IconButton 
-          title="Начать" 
-          onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Active})}
-        >
-          <ArrowCircleRight color="primary" />
-        </IconButton>
+        <Tooltip title="Начать">
+          <IconButton
+            onClick={() => updateTaskStatus({id: taskData.id, newStatus: TaskStatuses.Active})}
+          >
+            <ArrowCircleRight color="primary" />
+          </IconButton>
+        </Tooltip>
       )}
-      <IconButton
-        title="Удалить"
-        onClick={onRemoveButtonClick}
-      >
-        <DeleteOutline />
-      </IconButton>
+      <Tooltip title="Удалить">
+        <IconButton
+          onClick={onRemoveButtonClick}
+        >
+          <DeleteOutline />
+        </IconButton>
+      </Tooltip>
     </div>
   </div>
   )

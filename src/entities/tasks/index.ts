@@ -7,4 +7,4 @@ export {
     removeTaskEvent,
 } from './model/tasks';
 
-export { USERS_MOCK_DATA } from './lib/constants';
+export { TASKS_MOCK_DATA } from './lib/constants';
