@@ -10,6 +10,7 @@
     max-height: 500px;
     overflow-y: scroll;
     padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .status-tasks-card__title {

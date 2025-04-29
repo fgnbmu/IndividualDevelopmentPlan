@@ -7,6 +7,7 @@ import { StatusTasksCard } from "../../../widgets/status-tasks-card";
 import { TaskStatuses } from "../../../shared/types";
 
 import styles from './tasks-list-page.module.css';
+import { TasksStatusAnalysisPanel } from "../../../features/tasks-status-analysis-panel";
 
 export const TasksListPage = (): React.ReactElement => {
   const tasksList = useUnit<TaskParams[]>($tasks);
@@ -20,6 +21,7 @@ export const TasksListPage = (): React.ReactElement => {
   return (
     <div className={styles['tasks-list']}>
       Список задач
+      <TasksStatusAnalysisPanel/>
       <div className={styles['tasks-list__status-tasks-cards']}>
         {Object.entries(taskLists).map(([status, tasks]) => (
           <StatusTasksCard 
