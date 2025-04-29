@@ -16,7 +16,6 @@ export const StatusTasksCard = (props: StatusTasksCardProps): React.ReactElement
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#EFF2F7'
   };
 
   const TasksCardHeaderStyles = {

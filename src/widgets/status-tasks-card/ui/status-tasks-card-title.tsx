@@ -17,7 +17,7 @@ export const StatusTasksCardTitle = (props: StatusTasksCardTitleProps): React.Re
       {statusTitle === TaskStatuses.Scheduled && (
         <Tooltip title="Добавить задачу">
           <IconButton color="primary" onClick={() => navigateTo("/task")}>
-            <AddBoxRounded />
+            <AddBoxRounded fontSize="large" />
           </IconButton>
         </Tooltip>
       )}
