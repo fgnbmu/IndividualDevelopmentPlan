@@ -6,8 +6,12 @@ export const theme = createTheme({
       main: '#006838',
     },
     secondary: {
-      main: '#dc004e',
+      main: '#D9E8E1',
     },
+    text: {
+      primary: '#001D10',
+      secondary: '#006838',
+    }
   },
   typography: {
     fontFamily: 'Montserrat, Arial, sans-serif',
@@ -17,9 +21,8 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: '#F9F9F9',
           borderRadius: '15px',
-          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+          boxShadow: 'none',
           padding: '15px',
         },
       },
@@ -49,14 +52,5 @@ export const theme = createTheme({
         },
       },
     },
-    // MuiSnackbar: {
-    //   styleOverrides: {
-    //     root: {
-    //       backgroundColor: '#323232',
-    //       color: '#ffffff',
-    //       borderRadius: '8px',
-    //     },
-    //   },
-    // },
   },
 });
