@@ -20,7 +20,6 @@ export const TasksListPage = (): React.ReactElement => {
 
   return (
     <div className={styles['tasks-list']}>
-      Список задач
       <TasksStatusAnalysisPanel/>
       <div className={styles['tasks-list__status-tasks-cards']}>
         {Object.entries(taskLists).map(([status, tasks]) => (
