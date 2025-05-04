@@ -1,4 +1,4 @@
-import { TaskCountByStatus } from "../../types";
+import { TaskCountByStatus } from "../../../features/task-status-analysis-chart/types";
 
 export const calculatePercentagesTasksByStatus = (total: number, statusCounts: TaskCountByStatus) => {
   return Object.fromEntries(Object.entries(statusCounts).map(([label, count]) => ([

@@ -1,11 +1,13 @@
 import { TaskCategories, TaskStatuses } from '../../../../shared/types';
 import { USERS_MOCK_DATA } from '../../../users/lib/constants';
 
+const today = new Date().toISOString().split('T')[0];
+
 export const TASKS_MOCK_DATA = [
     {
         id: '1',
         title: 'Завершить проект',
-        date: '2025-04-24',
+        date: today,
         description: 'Завершить до конца недели.',
         status: TaskStatuses.Active,
         category: TaskCategories.Work,
@@ -14,7 +16,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '2',
         title: 'Купить продукты',
-        date: '2025-04-22',
+        date: today,
         description: 'Необходимы овощи и молочные продукты.',
         status: TaskStatuses.Closed,
         category: TaskCategories.ShoppingList,
@@ -23,7 +25,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '3',
         title: 'Записаться к врачу',
-        date: '2025-04-25',
+        date: today,
         description: 'Необходима консультация по причинам боли.',
         status: TaskStatuses.Scheduled,
         category: TaskCategories.Private,
@@ -32,7 +34,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '4',
         title: 'Подготовить отчет',
-        date: '2025-04-30',
+        date: today,
         description: 'Собрать данные для quarterly report.',
         status: TaskStatuses.Active,
         category: TaskCategories.Work,

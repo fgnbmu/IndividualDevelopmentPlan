@@ -6,9 +6,10 @@ import { TasksStatusChartCenterLabel } from "./tasks-status-chart-center-label";
 import { $tasks } from "../../../entities/tasks";
 import { useUnit } from "effector-react";
 import { TaskStatuses } from "../../../shared/types";
-import { calculatePercentagesTasksByStatus, countTasksByStatus, getColorForTaskStatus } from "../lib/utils";
+import { calculatePercentagesTasksByStatus, countTasksByStatus } from "../../../shared/lib/utils";
+import { getColorForTaskStatus } from "../lib/utils";
 
-export const TasksStatusAnalysisPanel = (): React.ReactElement => {
+export const TasksStatusAnalysisChart = (): React.ReactElement => {
   const tasks = useUnit($tasks);
 
   const totalTasks = tasks.length;

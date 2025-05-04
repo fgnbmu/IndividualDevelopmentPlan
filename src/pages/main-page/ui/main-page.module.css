@@ -1,0 +1,24 @@
+.main-page {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 30px;
+}
+
+.main-page__welcome {
+    padding: 18px;
+    border: 0.5px solid #E8E9EA;
+    color: #4F5459;
+    display: flex;
+    gap: 5px;
+    font-size: 18px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.main-page__welcome-name {
+    font-weight: 600;
+}
+
+.main-page__smt {
+    color: #4F5459;
+}

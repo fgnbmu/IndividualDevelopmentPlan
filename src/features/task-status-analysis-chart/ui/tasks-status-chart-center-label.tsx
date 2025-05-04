@@ -3,7 +3,7 @@ import { TasksStatusChartLabelData } from "./tasks-status-chart-label-data";
 import { $tasks } from "../../../entities/tasks";
 import { useUnit } from "effector-react";
 import { TaskStatuses } from "../../../shared/types";
-import { calculatePercentagesTasksByStatus, countTasksByStatus } from "../lib/utils";
+import { calculatePercentagesTasksByStatus, countTasksByStatus } from "../../../shared/lib/utils";
 
 export const TasksStatusChartCenterLabel = (): React.ReactElement => {
   const tasks = useUnit($tasks);
