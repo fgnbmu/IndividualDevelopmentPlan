@@ -1,8 +1,8 @@
-import { TaskStatuses } from "../../../../shared/types";
-import { TaskParams } from "../../../../shared/types/task-params";
-import { TaskCountByStatus } from "../../types";
+import { TaskStatuses } from "../../types";
+import { TaskParams } from "../../types/task-params";
+import { TaskCountByStatus } from "../../../features/task-status-analysis-chart/types";
 
-export const countTasksByStatus = (tasks: TaskParams[]) => {
+export const countTasksByStatus = (tasks: TaskParams[]): TaskCountByStatus => {
   const result: TaskCountByStatus = {
     [TaskStatuses.Scheduled]: 0,
     [TaskStatuses.Active]: 0,

@@ -17,7 +17,7 @@ export const AuthPage = (): React.ReactElement => {
     const user = USERS_MOCK_DATA.find(user => user.email === email && user.password === password);
     if (user) {
       loginEvent({ id: user.id, name: user.name, email: user.email });
-      navigateTo("/tasks-list");
+      navigateTo("/home-page");
     } else {
       setErrorMessage('Неверный email или пароль');
       setOpenSnackbar(true);
