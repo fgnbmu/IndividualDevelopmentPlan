@@ -6,7 +6,6 @@ import { Button, Paper } from "@mui/material";
 import { useUnit } from "effector-react";
 
 import styles from './main-page.module.css';
-import { TasksStatusAnalysisChart } from "../../../features/task-status-analysis-chart";
 import { TasksStatusAnalysisPeriodPanel } from "../../../features/task-status-analysis-period-panel";
 
 export function MainPage(): React.ReactElement {
@@ -24,7 +23,6 @@ export function MainPage(): React.ReactElement {
           Список задач
         </Button> */}
       </Paper>
-      <TasksStatusAnalysisChart/>
       <TasksStatusAnalysisPeriodPanel/>
     </div>
   )
