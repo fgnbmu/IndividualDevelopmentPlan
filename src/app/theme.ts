@@ -52,5 +52,18 @@ export const theme = createTheme({
         },
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          height: 5,
+          backgroundColor: '#006838',
+          borderRadius: 5,
+          width: 150
+        },
+        bar: {
+          borderRadius: 5,
+        }
+      }
+    }
   },
 });
