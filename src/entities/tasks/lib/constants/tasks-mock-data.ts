@@ -48,5 +48,23 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Scheduled,
         category: TaskCategories.Private,
         assignee: [USERS_MOCK_DATA[1].name, USERS_MOCK_DATA[2].name],
-    }
+    },
+    {
+        id: '6',
+        title: 'Оплатить пошлину на загранпаспорт',
+        date: '2025-05-10',
+        description: '6000 рублей',
+        status: TaskStatuses.Closed,
+        category: TaskCategories.Private,
+        assignee: [USERS_MOCK_DATA[1].name, USERS_MOCK_DATA[2].name],
+    },
+    {
+        id: '7',
+        title: 'Приборка в квартире',
+        date: '2025-05-10',
+        description: '',
+        status: TaskStatuses.Closed,
+        category: TaskCategories.Private,
+        assignee: [USERS_MOCK_DATA[1].name, USERS_MOCK_DATA[2].name],
+    },
 ];

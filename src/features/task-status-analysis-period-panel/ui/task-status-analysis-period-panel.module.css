@@ -21,6 +21,11 @@
     font-weight: 600;
 }
 
+.task-status-analysis-period-panel__statuses {
+    display: flex;
+    flex-direction: column;
+}
+
 .task-status-analysis-period-panel__statuses-data {
     display: flex;
     flex-direction: column;
