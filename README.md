@@ -4,8 +4,7 @@
 
 ## Установка и запуск
 
-<pre><code>
+```bash
 git clone https://github.com/fgnbmu/IndividualDevelopmentPlan
 npm install
 npm run dev
-</code></pre>
