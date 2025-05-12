@@ -1,10 +1,8 @@
 export { 
     $tasks, 
     addingNewTaskEvent, 
-    updateTaskStatusEvent, 
-    fetchTaskEvent,
-    fetchTaskEffect, 
+    updateTaskStatusEvent,
     removeTaskEvent,
 } from './model/tasks';
 
-export { TASKS_MOCK_DATA } from './lib/constants';
+export { TASKS_MOCK_DATA } from './mocks';

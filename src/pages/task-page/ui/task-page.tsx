@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addingNewTaskEvent, fetchTaskEffect, fetchTaskEvent } from "../../../entities/tasks";
+import { addingNewTaskEvent, $tasks } from "../../../entities/tasks";
 import { TaskStatuses, TaskCategories } from "../../../shared/types";
 import { USERS_MOCK_DATA } from "../../../entities/users";
 
@@ -26,25 +26,22 @@ export const TaskPage = (): React.ReactElement => {
   const [taskAssignee, setTaskAssignee] = useState<string[]>([]);
 
   const { id } = useParams<{ id: string }>();
-  const [addingNewTask, fetchTask] = useUnit([addingNewTaskEvent, fetchTaskEvent]);
+  const [tasks, addingNewTask] = useUnit([$tasks, addingNewTaskEvent]);
   const navigateTo = useNavigate();
 
   useEffect(() => {
     if (id) {
-      fetchTask(id);
+      const foundTask = tasks.find(task => task.id === id);
+      if (foundTask) {
+        setTaskTitle(foundTask.title);
+        setTaskDescription(foundTask.description || '');
+        setTaskDate(dayjs(foundTask.date));
+        setTaskStatus(foundTask.status);
+        setTaskCategory(foundTask.category || '');
+        setTaskAssignee(foundTask.assignee || []);
+      }
     }
-  }, [id]);
-  
-  fetchTaskEffect.done.watch(({ result }) => {
-    if (result) {
-      setTaskTitle(result.title);
-      setTaskDescription(result.description || '');
-      setTaskDate(dayjs(result.date));
-      setTaskStatus(result.status);
-      setTaskCategory(result.category || '');
-      setTaskAssignee(result.assignee || []);
-    }
-  });
+  }, [id, tasks]);
 
   const handleChangeAssignee = (event: SelectChangeEvent<typeof taskAssignee>): void => {
     const {

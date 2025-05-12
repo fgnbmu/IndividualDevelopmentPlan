@@ -1,5 +1,5 @@
-import { TaskCategories, TaskStatuses } from '../../../../shared/types';
-import { USERS_MOCK_DATA } from '../../../users/lib/constants';
+import { TaskCategories, TaskStatuses } from '../../../shared/types';
+import { USERS_MOCK_DATA } from '../../users';
 
 const today = new Date().toISOString().split('T')[0];
 
