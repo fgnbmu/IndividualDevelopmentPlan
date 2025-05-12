@@ -33,17 +33,19 @@ export const router = createBrowserRouter([
   {
     path: '/task',
     element: (
-      <AuthCheck>
-        <TaskPage />
-      </AuthCheck>
+      // <AuthCheck>
+      //   <TaskPage />
+      // </AuthCheck>
+      <TaskPage />
     ),
   },
   {
     path: '/task/:id',
     element: (
-      <AuthCheck>
-        <TaskPage />
-      </AuthCheck>
+      // <AuthCheck>
+      //   <TaskPage />
+      // </AuthCheck>
+      <TaskPage />
     ),
   },
   {
