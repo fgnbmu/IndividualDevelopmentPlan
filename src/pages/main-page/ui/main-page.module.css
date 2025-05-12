@@ -1,6 +1,5 @@
 .main-page {
     display: flex;
-    /* flex-direction: column; */
     gap: 30px;
 }
 
@@ -10,7 +9,7 @@
     color: #4F5459;
     display: flex;
     gap: 5px;
-    font-size: 18px;
+    font-size: 14px;
     width: fit-content;
     height: fit-content;
 }
