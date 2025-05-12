@@ -18,23 +18,20 @@ export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
     boxShadow: 'none',
     backgroundColor: '#006838',
     display: 'flex',
-    height: 'fit-content'
+    height: 'fit-content',
+    width: 510,
   };
+
+  const SelectStyles = {
+    width: 130,
+    height: 24,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    padding: '15px'
+  }
 
   return (
     <Paper sx={TaskStatusAnalysisPeriodPanelStyles}>
-      <div className={styles['task-status-analysis-period-panel__select-container']}>
-        <Select
-          value={selectedPeriod}
-          onChange={(event) => setSelectedPeriod(event.target.value as TasksPeriods)}
-          fullWidth
-        >
-          <MenuItem value={TasksPeriods.Today}>{TasksPeriods.Today}</MenuItem>
-          <MenuItem value={TasksPeriods.Week}>{TasksPeriods.Week}</MenuItem>
-          <MenuItem value={TasksPeriods.Month}>{TasksPeriods.Month}</MenuItem>
-        </Select>
-      </div>
-      
       <div className={styles['task-status-analysis-period-panel__statuses']}>
         <div className={styles['task-status-analysis-period-panel__closed']}>
           <div className={styles['task-status-analysis-period-panel__closed-text']}>{TaskStatuses.Closed}</div>
@@ -42,8 +39,19 @@ export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
             {percentagesByStatus[TaskStatuses.Closed]}%
           </div>
         </div>
-
         <div className={styles['task-status-analysis-period-panel__statuses-data']}>
+          <div className={styles['task-status-analysis-period-panel__select-container']}>
+            <Select
+              value={selectedPeriod}
+              onChange={(event) => setSelectedPeriod(event.target.value as TasksPeriods)}
+              fullWidth
+              sx={SelectStyles}
+            >
+              <MenuItem value={TasksPeriods.Today}>{TasksPeriods.Today}</MenuItem>
+              <MenuItem value={TasksPeriods.Week}>{TasksPeriods.Week}</MenuItem>
+              <MenuItem value={TasksPeriods.Month}>{TasksPeriods.Month}</MenuItem>
+            </Select>
+          </div>
           <div className={styles['task-status-analysis-period-panel__active']}>
             <div className={styles['task-status-analysis-period-panel__active-data']}>
               <div>{TaskStatuses.Active}</div>
