@@ -6,5 +6,6 @@
 
 ```bash
 git clone https://github.com/fgnbmu/IndividualDevelopmentPlan
+git checkout main
 npm install
 npm run dev
