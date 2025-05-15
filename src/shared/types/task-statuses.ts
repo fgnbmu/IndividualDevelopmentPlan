@@ -1,5 +1,5 @@
 export enum TaskStatuses {
-    Scheduled = 'Запланировано',
-    Active = 'В процессе',
-    Closed = 'Выполнено',
+    Scheduled = 'scheduled',
+    Active = 'active',
+    Closed = 'closed',
 }
