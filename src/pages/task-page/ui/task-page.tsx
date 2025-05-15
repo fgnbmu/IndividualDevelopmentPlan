@@ -13,9 +13,9 @@ import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addingNewTaskEvent, $tasks } from "../../../entities/tasks";
-import { TaskStatuses, TaskCategories } from "../../../shared/types";
+import { addingNewTaskEvent, $tasks, updateTaskEvent } from "../../../entities/tasks";
 import { USERS_MOCK_DATA } from "../../../entities/users";
+import { TASK_CATEGORIES_OPTIONS, TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
 
 export const TaskPage = (): React.ReactElement => {
   const [taskTitle, setTaskTitle] = useState<string>('');
@@ -26,7 +26,7 @@ export const TaskPage = (): React.ReactElement => {
   const [taskAssignee, setTaskAssignee] = useState<string[]>([]);
 
   const { id } = useParams<{ id: string }>();
-  const [tasks, addingNewTask] = useUnit([$tasks, addingNewTaskEvent]);
+  const [tasks, addingNewTask, updateTask] = useUnit([$tasks, addingNewTaskEvent, updateTaskEvent]);
   const navigateTo = useNavigate();
 
   useEffect(() => {
@@ -52,19 +52,33 @@ export const TaskPage = (): React.ReactElement => {
     );
   };
 
-  const handleAddTask = (event: React.FormEvent<HTMLFormElement>): void => {
+const handleSaveTask = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (taskTitle && taskDate) {
       const taskId = id || uuidv4();
-      addingNewTask({ 
-        id: taskId,
-        title: taskTitle, 
-        date: taskDate.format('YYYY-MM-DD'), 
-        status: taskStatus, 
-        description: taskDescription,
-        category: taskCategory,
-        assignee: taskAssignee,
-      });
+      
+      if (id) {
+        updateTask({ 
+          id: taskId,
+          title: taskTitle, 
+          date: taskDate.format('YYYY-MM-DD'), 
+          status: taskStatus, 
+          description: taskDescription,
+          category: taskCategory,
+          assignee: taskAssignee,
+        });
+      } else {
+        addingNewTask({ 
+          id: taskId,
+          title: taskTitle, 
+          date: taskDate.format('YYYY-MM-DD'), 
+          status: taskStatus, 
+          description: taskDescription,
+          category: taskCategory,
+          assignee: taskAssignee,
+        });
+      }
+      
       navigateTo("/tasks-list");
     }
   };
@@ -73,7 +87,7 @@ export const TaskPage = (): React.ReactElement => {
     <div className={styles['task-page']}>
       <Box 
         component="form"
-        onSubmit={handleAddTask}
+        onSubmit={handleSaveTask}
         className={styles['task-page__form']}
       >
         <TextField 
@@ -113,8 +127,11 @@ export const TaskPage = (): React.ReactElement => {
             onChange={(e): void => setTaskStatus(e.target.value)}
             label="Статус задачи"
           >
-            <MenuItem value={TaskStatuses.Scheduled}>{TaskStatuses.Scheduled}</MenuItem>
-            <MenuItem value={TaskStatuses.Active}>{TaskStatuses.Active}</MenuItem>
+            {Object.entries(TASK_STATUSES_OPTIONS).map(([statusKey, statusName]) => (
+              <MenuItem key={statusKey} value={statusKey}>
+                {statusName}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl className={styles['task-page__select']}>
@@ -126,11 +143,11 @@ export const TaskPage = (): React.ReactElement => {
             value={taskAssignee}
             onChange={handleChangeAssignee}
             input={<OutlinedInput label="Ответственный" />}
-            renderValue={(selected) => selected.join(', ')}
+            renderValue={(selected) => selected.map(id => USERS_MOCK_DATA.find(u => u.id === id)?.name).join(', ')}
           >
             {USERS_MOCK_DATA.map(({name, id}) => (
-              <MenuItem key={id} value={name}>
-                <Checkbox checked={taskAssignee.includes(name)} />
+              <MenuItem key={id} value={id}>
+                <Checkbox checked={taskAssignee.includes(id)} />
                 <ListItemText primary={name} />
               </MenuItem>
             ))}
@@ -146,9 +163,11 @@ export const TaskPage = (): React.ReactElement => {
             onChange={(e): void => setTaskCategory(e.target.value)}
             label="Категория задачи"
           >
-            <MenuItem value={TaskCategories.Private}>{TaskCategories.Private}</MenuItem>
-            <MenuItem value={TaskCategories.Work}>{TaskCategories.Work}</MenuItem>
-            <MenuItem value={TaskCategories.ShoppingList}>{TaskCategories.ShoppingList}</MenuItem>
+            {Object.entries(TASK_CATEGORIES_OPTIONS).map(([categoryKey, categoryName]) => (
+              <MenuItem key={categoryKey} value={categoryKey}>
+                {categoryName}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <Button 

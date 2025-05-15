@@ -1,5 +1,5 @@
 export enum TaskCategories {
-    Private = 'Личное',
-    Work = 'Работа',
-    ShoppingList = 'Список покупок',
+    Private = 'private',
+    Work = 'work',
+    ShoppingList = 'shoppingList',
 }

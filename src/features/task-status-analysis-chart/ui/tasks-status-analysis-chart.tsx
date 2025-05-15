@@ -8,6 +8,7 @@ import { useUnit } from "effector-react";
 import { TaskStatuses } from "../../../shared/types";
 import { calculatePercentagesTasksByStatus, countTasksByStatus } from "../../../shared/lib/utils";
 import { getColorForTaskStatus } from "../lib/utils";
+import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
 
 export const TasksStatusAnalysisChart = (): React.ReactElement => {
   const tasks = useUnit($tasks);
@@ -17,7 +18,7 @@ export const TasksStatusAnalysisChart = (): React.ReactElement => {
   const percentages = calculatePercentagesTasksByStatus(totalTasks, countsByStatus);
 
   const chartData = Object.keys(countsByStatus).map((label: string) => ({
-    label: label as TaskStatuses,
+    label: TASK_STATUSES_OPTIONS[label as TaskStatuses],
     value: percentages[label as TaskStatuses],
     color: getColorForTaskStatus(label as TaskStatuses)
   }));

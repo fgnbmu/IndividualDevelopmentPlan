@@ -6,6 +6,8 @@ import { TaskStatuses } from "../../../shared/types";
 import { useState } from "react";
 import { TasksPeriods } from "../types";
 import styles from './task-status-analysis-period-panel.module.css';
+import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
+import { TASKS_PERIODS_OPTIONS } from "../lib/constants";
 
 export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
   const [selectedPeriod, setSelectedPeriod] = useState(TasksPeriods.Today);
@@ -34,7 +36,9 @@ export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
     <Paper sx={TaskStatusAnalysisPeriodPanelStyles}>
       <div className={styles['task-status-analysis-period-panel__statuses']}>
         <div className={styles['task-status-analysis-period-panel__closed']}>
-          <div className={styles['task-status-analysis-period-panel__closed-text']}>{TaskStatuses.Closed}</div>
+          <div className={styles['task-status-analysis-period-panel__closed-text']}>
+            {TASK_STATUSES_OPTIONS.closed}
+          </div>
           <div className={styles['task-status-analysis-period-panel__closed-percent']}>
             {percentagesByStatus[TaskStatuses.Closed]}%
           </div>
@@ -47,14 +51,16 @@ export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
               fullWidth
               sx={SelectStyles}
             >
-              <MenuItem value={TasksPeriods.Today}>{TasksPeriods.Today}</MenuItem>
-              <MenuItem value={TasksPeriods.Week}>{TasksPeriods.Week}</MenuItem>
-              <MenuItem value={TasksPeriods.Month}>{TasksPeriods.Month}</MenuItem>
+              {Object.entries(TASKS_PERIODS_OPTIONS).map(([periodKey, periodName]) => (
+                <MenuItem key={periodKey} value={periodKey}>
+                  {periodName}
+                </MenuItem>
+              ))}
             </Select>
           </div>
           <div className={styles['task-status-analysis-period-panel__active']}>
             <div className={styles['task-status-analysis-period-panel__active-data']}>
-              <div>{TaskStatuses.Active}</div>
+              <div>{TASK_STATUSES_OPTIONS.active}</div>
               <div className={styles['task-status-analysis-period-panel__count']}>{countFilteredTasksByStatus[TaskStatuses.Active]}</div>
             </div>
             <div className={styles['task-status-analysis-period-panel__bar-data']}>
@@ -75,7 +81,7 @@ export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
           
           <div className={styles['task-status-analysis-period-panel__scheduled']}>
             <div className={styles['task-status-analysis-period-panel__scheduled-data']}>
-              <div>{TaskStatuses.Scheduled}</div>
+              <div>{TASK_STATUSES_OPTIONS.scheduled}</div>
               <div className={styles['task-status-analysis-period-panel__count']}>{countFilteredTasksByStatus[TaskStatuses.Scheduled]}</div>
             </div>
             <div className={styles['task-status-analysis-period-panel__bar-data']}>

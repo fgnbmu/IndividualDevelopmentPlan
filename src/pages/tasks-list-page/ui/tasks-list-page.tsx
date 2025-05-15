@@ -8,6 +8,7 @@ import { TaskStatuses } from "../../../shared/types";
 
 import styles from './tasks-list-page.module.css';
 import { TasksStatusAnalysisChart } from "../../../features/task-status-analysis-chart";
+import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
 
 export const TasksListPage = (): React.ReactElement => {
   const tasksList = useUnit<TaskParams[]>($tasks);
@@ -26,7 +27,7 @@ export const TasksListPage = (): React.ReactElement => {
           <StatusTasksCard 
             key={status} 
             tasksList={tasks} 
-            statusTitle={status}
+            statusTitle={TASK_STATUSES_OPTIONS[status as TaskStatuses]}
           />
         ))}
       </div>

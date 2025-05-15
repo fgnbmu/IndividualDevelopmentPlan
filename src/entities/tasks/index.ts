@@ -1,6 +1,7 @@
 export { 
     $tasks, 
-    addingNewTaskEvent, 
+    addingNewTaskEvent,
+    updateTaskEvent,
     updateTaskStatusEvent,
     removeTaskEvent,
 } from './model/tasks';
