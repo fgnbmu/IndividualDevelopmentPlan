@@ -52,7 +52,7 @@ export const TaskPage = (): React.ReactElement => {
     );
   };
 
-const handleSaveTask = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSaveTask = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (taskTitle && taskDate) {
       const taskId = id || uuidv4();

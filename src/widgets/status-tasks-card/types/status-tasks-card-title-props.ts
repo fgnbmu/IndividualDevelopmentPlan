@@ -1,3 +1,3 @@
 export interface StatusTasksCardTitleProps {
-    statusTitle: string;
+    status: string;
 }

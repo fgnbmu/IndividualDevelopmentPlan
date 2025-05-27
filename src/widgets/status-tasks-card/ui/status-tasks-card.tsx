@@ -7,21 +7,21 @@ import { StatusTasksCardProps } from '../types';
 import { TaskCard } from '../../task-card';
 import { StatusTasksCardTitle } from "./status-tasks-card-title";
 
+const StatusTasksCardStyles = {
+  width: 300,
+  padding: '20px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
+
+const TasksCardHeaderStyles = {
+  padding: '10px 0px',
+  width: '100%',
+};
+
 export const StatusTasksCard = (props: StatusTasksCardProps): React.ReactElement => {
-  const { tasksList, statusTitle } = props;
-
-  const StatusTasksCardStyles = {
-    width: 300,
-    padding: '20px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  };
-
-  const TasksCardHeaderStyles = {
-    padding: '10px 0px',
-    width: '100%',
-  };
+  const { tasksList, status } = props;
 
   return (
     <div>
@@ -31,7 +31,7 @@ export const StatusTasksCard = (props: StatusTasksCardProps): React.ReactElement
       >
         <CardHeader
           sx={TasksCardHeaderStyles}
-          title={<StatusTasksCardTitle statusTitle={statusTitle} />}
+          title={<StatusTasksCardTitle status={status} />}
         />
         <CardContent>
           {tasksList.length === 0 ? (

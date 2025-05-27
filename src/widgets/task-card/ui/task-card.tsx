@@ -8,18 +8,18 @@ import { getTaskCardBackgroundColor, getTaskCardFields } from "../lib/utils";
 import { TaskCardTitle } from "./task-card-title";
 import { RemoveTaskModal } from "./remove-task-modal";
 
+const CardHeaderStyles = {
+  padding: '2px 2px 5px 2px',
+};
+
+const CardContentStyles = {
+  padding: '2px',
+};
+
 export const TaskCard = (props: TaskCardProps): React.ReactElement => {
   const { taskData } = props;
 
   const [isRemoveTaskModalVisible, setIsRemoveTaskModalVisible] = useState<boolean>(false);
-
-  const CardHeaderStyles = {
-    padding: '2px 2px 5px 2px',
-  };
-
-  const CardContentStyles = {
-    padding: '2px',
-  };
 
   const TaskStyles = {
     backgroundColor: getTaskCardBackgroundColor(taskData.status),

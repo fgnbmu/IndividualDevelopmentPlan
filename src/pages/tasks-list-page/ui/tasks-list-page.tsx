@@ -27,7 +27,7 @@ export const TasksListPage = (): React.ReactElement => {
           <StatusTasksCard 
             key={status} 
             tasksList={tasks} 
-            statusTitle={TASK_STATUSES_OPTIONS[status as TaskStatuses]}
+            status={TASK_STATUSES_OPTIONS[status as TaskStatuses]}
           />
         ))}
       </div>

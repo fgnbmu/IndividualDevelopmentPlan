@@ -9,28 +9,28 @@ import styles from './task-status-analysis-period-panel.module.css';
 import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
 import { TASKS_PERIODS_OPTIONS } from "../lib/constants";
 
+const TaskStatusAnalysisPeriodPanelStyles = {
+  borderRadius: '15px',
+  padding: '25px',
+  boxShadow: 'none',
+  backgroundColor: '#006838',
+  display: 'flex',
+  height: 'fit-content',
+  width: 510,
+};
+
+const SelectStyles = {
+  width: 130,
+  height: 24,
+  borderRadius: 10,
+  backgroundColor: '#FFFFFF',
+  padding: '15px'
+};
+
 export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
   const [selectedPeriod, setSelectedPeriod] = useState(TasksPeriods.Today);
 
   const { countFilteredTasksByStatus, percentagesByStatus } = getTasksDataByDate(selectedPeriod);
-
-  const TaskStatusAnalysisPeriodPanelStyles = {
-    borderRadius: '15px',
-    padding: '25px',
-    boxShadow: 'none',
-    backgroundColor: '#006838',
-    display: 'flex',
-    height: 'fit-content',
-    width: 510,
-  };
-
-  const SelectStyles = {
-    width: 130,
-    height: 24,
-    borderRadius: 10,
-    backgroundColor: '#FFFFFF',
-    padding: '15px'
-  }
 
   return (
     <Paper sx={TaskStatusAnalysisPeriodPanelStyles}>
