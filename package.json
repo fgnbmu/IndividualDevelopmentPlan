@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
+    "@hookform/resolvers": "5.0.1",
     "@mui/icons-material": "6.4.7",
     "@mui/material": "6.4.7",
     "@mui/system": "7.1.0",
@@ -29,7 +30,8 @@
     "react-hook-form-mui": "7.6.1",
     "react-router-dom": "7.2.0",
     "sass-embedded": "1.89.0",
-    "uuid": "11.1.0"
+    "uuid": "11.1.0",
+    "yup": "1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "9.21.0",
