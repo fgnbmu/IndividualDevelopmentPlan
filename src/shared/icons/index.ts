@@ -1,0 +1,1 @@
+export { TaskMateIcon } from './task-mate-icon'
