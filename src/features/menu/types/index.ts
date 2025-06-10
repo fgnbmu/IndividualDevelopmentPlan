@@ -1,0 +1,1 @@
+export { MenuProps } from './menu-props';
