@@ -1,0 +1,17 @@
+.menu__app-logo {
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    justify-content: center;
+    gap: 10px
+}
+
+.menu__app-logo-text {
+    font-size: 26px;
+    font-weight: 600;
+    width: 80px;
+    word-break: break-word;
+    line-height: 25px;
+    letter-spacing: 2px;
+}

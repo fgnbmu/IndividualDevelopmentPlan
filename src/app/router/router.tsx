@@ -6,6 +6,7 @@ import { NotFoundPage } from '../../pages/not-found-page';
 import { TaskPage } from '../../pages/task-page';
 import { AuthPage } from '../../pages/auth-page';
 import { AuthCheck } from './auth-check';
+import { Header } from '../../features/header';
 
 export const router = createBrowserRouter([
   {
@@ -15,37 +16,37 @@ export const router = createBrowserRouter([
   {
     path: '/home-page',
     element: (
-      // <AuthCheck>
-      //   <MainPage />
-      // </AuthCheck>
-      <MainPage />
+      <AuthCheck>
+        <Header/>
+        <MainPage />
+      </AuthCheck>
     ),
   },
   {
     path: '/tasks-list',
     element: (
-      // <AuthCheck>
-      //   <TasksListPage />
-      // </AuthCheck>
-      <TasksListPage />
+      <AuthCheck>
+        <Header/>
+        <TasksListPage />
+      </AuthCheck>
     ),
   },
   {
     path: '/task',
     element: (
-      // <AuthCheck>
-      //   <TaskPage />
-      // </AuthCheck>
-      <TaskPage />
+      <AuthCheck>
+        <Header/>
+        <TaskPage />
+      </AuthCheck>
     ),
   },
   {
     path: '/task/:id',
     element: (
-      // <AuthCheck>
-      //   <TaskPage />
-      // </AuthCheck>
-      <TaskPage />
+      <AuthCheck>
+        <Header/>
+        <TaskPage />
+      </AuthCheck>
     ),
   },
   {

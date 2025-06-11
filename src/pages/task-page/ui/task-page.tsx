@@ -122,6 +122,7 @@ export const TaskPage = (): React.ReactElement => {
           <Select
             {...register('status')}
             label="Статус задачи"
+            value={watchedValues.status ? watchedValues.status : ''}
           >
             {Object.entries(TASK_STATUSES_OPTIONS).map(([key, name]) => (
               <MenuItem key={key} value={key}>{name}</MenuItem>
@@ -152,6 +153,7 @@ export const TaskPage = (): React.ReactElement => {
           <Select
             {...register('category')}
             label="Категория задачи"
+            value={watchedValues.category ? watchedValues.category : ''}
           >
             {Object.entries(TASK_CATEGORIES_OPTIONS).map(([key, name]) => (
               <MenuItem key={key} value={key}>{name}</MenuItem>

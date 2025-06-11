@@ -24,6 +24,7 @@ export function MainPage(): React.ReactElement {
         </Button> */}
       </Paper>
       <TasksStatusAnalysisPeriodPanel/>
+      <Button onClick={() => navigateTo("/task")}>Создать таск</Button>
     </div>
   )
 };
