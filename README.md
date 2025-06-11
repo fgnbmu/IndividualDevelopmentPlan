@@ -13,4 +13,5 @@ npm run dev
 
 ## Учетная запись
 Логин: ralph.hubbard@example.com
+
 Пароль: password123
