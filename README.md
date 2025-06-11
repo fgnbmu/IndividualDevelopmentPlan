@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-## Учетная запись
+## Данные для входа
 Логин: ralph.hubbard@example.com
 
 Пароль: password123
