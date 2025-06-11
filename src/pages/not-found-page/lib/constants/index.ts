@@ -1,0 +1,1 @@
+export { NOT_FOUND_PAGE_ERROR_DESCRIPTION, NOT_FOUND_PAGE_ERROR_NAME } from './not-found-page-label';

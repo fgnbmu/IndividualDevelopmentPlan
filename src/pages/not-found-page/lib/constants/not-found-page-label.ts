@@ -1,0 +1,2 @@
+export const NOT_FOUND_PAGE_ERROR_NAME = '404';
+export const NOT_FOUND_PAGE_ERROR_DESCRIPTION = 'Страница, которую вы запрашиваете, не существует. Возможно, она устарела, была удалена, или был введен неверный адрес в адресной строке'
