@@ -6,8 +6,7 @@ html, body {
 body {
     font-family: 'Montserrat', Arial, sans-serif;
     color: #021130;
-    background-color: var(--color-primary);
-    /* padding: 50px; */
+    background-color: #F5F8F7;
 }
 
 * {
