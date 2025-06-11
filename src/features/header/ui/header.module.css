@@ -1,3 +1,5 @@
-.header__drawer-icon {
-
+.header__app-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 30px;
 }

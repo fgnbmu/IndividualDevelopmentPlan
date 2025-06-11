@@ -64,6 +64,40 @@ export const theme = createTheme({
           borderRadius: 5,
         }
       }
-    }
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          width: 300,
+          alignItems: 'center'
+        }
+      }
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          width: 220,
+        }
+      }
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        primary: {
+          fontSize: 13,
+          color: '#4F5459',
+        }
+      }
+    },
+     MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "#F5F8F7",
+          },
+          borderRadius: 10,
+          paddingLeft: 20
+        },
+      },
+    },
   },
 });

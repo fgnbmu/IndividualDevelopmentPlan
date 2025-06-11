@@ -1,50 +1,73 @@
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
-import SettingsIcon from '@mui/icons-material/Settings';
-import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { TaskMateIcon } from '../../../shared/icons';
 import { MenuProps } from '../types';
+import { PlaylistAddCheckCircle, Widgets } from '@mui/icons-material';
+import styles from './menu.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { ExitModal } from './exit-modal';
 
-export const Menu = ({ isOpen, onClose }: MenuProps) => {
+const IconStyles = {
+    fontSize: 22,
+    color: '#4F5459'
+}
+
+export const Menu = (props: MenuProps) => {
+  const { isOpen, onClose } = props;
+
+  const navigateTo = useNavigate();
+  const [isExitModalVisible, setIsExitModalVisible] = useState<boolean>(false);
+
+  const navigateToHomePage = () => {
+    navigateTo("/home-page");
+    onClose();
+  };
+
+  const navigateToTasksListPage = () => {
+    navigateTo("/tasks-list");
+    onClose();
+  };
+
+  const handleExit = (): void => {
+    setIsExitModalVisible(false);
+    navigateTo("/");
+    onClose();
+  }
+
   return (
-    <Drawer anchor="left" open={isOpen} onClose={onClose}>
-      <div>
-        <TaskMateIcon/>
-      </div>
-      <List>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon><HomeIcon /></ListItemIcon>
-            <ListItemText primary="Главная страница" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon><InfoIcon /></ListItemIcon>
-            <ListItemText primary="Информация" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon><SettingsIcon /></ListItemIcon>
-            <ListItemText primary="Настройки" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary="Профиль" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-            <ListItemText primary="Выйти" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Drawer>
+    <div>
+        <Drawer anchor="left" open={isOpen} onClose={onClose}>
+        <div className={styles['menu__app-logo']}>
+            <TaskMateIcon/>
+            <div className={styles['menu__app-logo-text']}>TaskMate</div>
+        </div>
+        <List>
+            <ListItem disablePadding>
+            <ListItemButton onClick={navigateToHomePage}>
+                <ListItemIcon><Widgets sx={IconStyles} /></ListItemIcon>
+                <ListItemText primary="Главная страница" />
+            </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+            <ListItemButton onClick={navigateToTasksListPage}>
+                <ListItemIcon><PlaylistAddCheckCircle sx={IconStyles} /></ListItemIcon>
+                <ListItemText primary="Список задач" />
+            </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+            <ListItemButton onClick={() => setIsExitModalVisible(true)}>
+                <ListItemIcon><ExitToAppIcon sx={IconStyles} /></ListItemIcon>
+                <ListItemText primary="Выйти" />
+            </ListItemButton>
+            </ListItem>
+        </List>
+        </Drawer>
+        <ExitModal
+          isVisible={isExitModalVisible}
+          onClose={() => setIsExitModalVisible(false)}
+          onConfirm={handleExit}
+        />
+    </div>
   );
 };
