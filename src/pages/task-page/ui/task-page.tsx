@@ -48,7 +48,7 @@ export const TaskPage = (): React.ReactElement => {
   }, [id, tasks, reset]);
 
   const handleSaveTask = ({ title, date, status, description, category, assignee }: TaskFormParams): void => {
-    if (title && date && status) {
+    if (title && date && status && assignee) {
       const formattedDate = dayjs(date).format('YYYY-MM-DD');
       const taskId = id || uuidv4();
 
@@ -74,7 +74,7 @@ export const TaskPage = (): React.ReactElement => {
         });
       }
     
-      navigateTo('/tasks-list');
+      window.history.back();
     }
   };
 
@@ -165,7 +165,7 @@ export const TaskPage = (): React.ReactElement => {
           variant="contained"
           color="primary"
           className={styles['task-page__button']}
-          disabled={!(watchedValues.title && watchedValues.date && watchedValues.status)}
+          disabled={!(watchedValues.title && watchedValues.date && watchedValues.status && watchedValues.assignee)}
         >
           {id ? 'Сохранить изменения' : 'Создать задачу'}
         </Button>

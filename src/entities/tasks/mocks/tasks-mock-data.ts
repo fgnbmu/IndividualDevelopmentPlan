@@ -1,6 +1,12 @@
 import { TaskCategories, TaskStatuses } from '../../../shared/types';
 
-const today = new Date().toISOString().split('T')[0];
+const date = new Date();
+
+const today = date.toISOString().split('T')[0];
+
+const tomorrowDate = date;
+tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+const tomorrow = tomorrowDate.toISOString().split('T')[0];
 
 export const TASKS_MOCK_DATA = [
     {
@@ -42,7 +48,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '5',
         title: 'Забронировать отель',
-        date: '2025-05-15',
+        date: tomorrow,
         description: 'Необходимо уточнить время заезда.',
         status: TaskStatuses.Scheduled,
         category: TaskCategories.Private,
@@ -51,7 +57,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '6',
         title: 'Оплатить пошлину на загранпаспорт',
-        date: '2025-05-10',
+        date: '2025-07-10',
         description: '6000 рублей',
         status: TaskStatuses.Closed,
         category: TaskCategories.Private,
@@ -60,7 +66,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '7',
         title: 'Приборка в квартире',
-        date: '2025-05-10',
+        date: tomorrow,
         description: '',
         status: TaskStatuses.Closed,
         category: TaskCategories.Private,
