@@ -1,0 +1,81 @@
+.tasks-by-date-list {
+    height: fit-content;
+    width: 40%;
+}
+
+.tasks-by-date-list__header {
+    border-bottom: 2px solid #F5F8F7;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.tasks-by-date-list__filter-icon {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+
+.tasks-by-date-list__list {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.task-by-date-card {
+    background: #FFFFFF;
+    box-shadow: 0 4px 16px rgba(229, 233, 242, 0.3),
+              0 4px 4px rgba(229, 233, 242, 0.2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    width: 80%;
+}
+
+.task-by-date-card__title {
+  display: flex;
+  align-items: start;
+}
+
+.task-by-date-card__title-text {
+  display: flex;
+  width: 70%;
+}
+
+.task-by-date-card__title-icon {
+  display: flex;
+  width: 30%;
+  justify-content: end;
+}
+
+.task-by-date-card__status {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+
+.task-by-date-card__status--active {
+  background-color: #90F095
+}
+
+.task-by-date-card__status--closed {
+  background-color: #FFA3A3
+}
+
+.task-by-date-card__status--scheduled {
+  background-color: #98D9FF
+}
+
+.task-by-date-card__date {
+  font-size: 13px;
+  font-weight: 500;
+  align-self: end;
+  color: #006838;
+}

@@ -62,6 +62,7 @@ export const theme = createTheme({
         },
         bar: {
           borderRadius: 5,
+          width: '95%'
         }
       }
     },
@@ -88,7 +89,7 @@ export const theme = createTheme({
         }
       }
     },
-     MuiListItemButton: {
+    MuiListItemButton: {
       styleOverrides: {
         root: {
           "&:hover": {

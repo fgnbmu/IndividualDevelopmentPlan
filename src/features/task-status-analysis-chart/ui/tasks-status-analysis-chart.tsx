@@ -29,12 +29,13 @@ export const TasksStatusAnalysisChart = (): React.ReactElement => {
         series={[
           {
             data: chartData,
-            innerRadius: 80,
-            outerRadius: 100,
+            innerRadius: 70,
+            outerRadius: 90,
             startAngle: -90,
           },
         ]}
         {...TASKS_STATUS_CHART_PARAMS}
+        sx={{height: 150, width: 150}}
       >
         <TasksStatusChartCenterLabel />
       </PieChart>

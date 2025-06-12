@@ -1,8 +1,14 @@
 .main-page {
     display: flex;
+    flex-direction: column;
     gap: 30px;
     height: 100%;
     padding: 114px 50px 50px 50px;
+}
+
+.main-page__first-row {
+    display: flex;
+    gap: 30px;
 }
 
 .main-page__welcome {
