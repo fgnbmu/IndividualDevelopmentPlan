@@ -1,1 +1,0 @@
-export { TASKS_PERIODS_OPTIONS } from './tasks-periods-options';

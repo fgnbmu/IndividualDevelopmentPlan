@@ -39,7 +39,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '4',
         title: 'Подготовить отчет',
-        date: today,
+        date: '2025-07-10',
         description: 'Собрать данные для quarterly report.',
         status: TaskStatuses.Active,
         category: TaskCategories.Work,
@@ -57,7 +57,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '6',
         title: 'Оплатить пошлину на загранпаспорт',
-        date: '2025-07-10',
+        date: '2025-06-10',
         description: '6000 рублей',
         status: TaskStatuses.Closed,
         category: TaskCategories.Private,
@@ -66,7 +66,7 @@ export const TASKS_MOCK_DATA = [
     {
         id: '7',
         title: 'Приборка в квартире',
-        date: tomorrow,
+        date: today,
         description: '',
         status: TaskStatuses.Closed,
         category: TaskCategories.Private,

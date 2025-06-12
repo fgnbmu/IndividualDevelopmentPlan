@@ -1,0 +1,1 @@
+export { WELCOME_TEXT, WELCOME_DESCRIPTION } from './welcome-text';

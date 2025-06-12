@@ -8,6 +8,14 @@ import { useUnit } from "effector-react";
 import styles from './main-page.module.css';
 import { TasksStatusAnalysisPeriodPanel } from "../../../features/task-status-analysis-period-panel";
 import { TasksByDateList } from "../../../features/tasks-by-date-list";
+import { WELCOME_DESCRIPTION, WELCOME_TEXT } from "../lib/constants";
+
+const WelcomePaper = {
+  boxShadow: 'none',
+  borderRadius: '15px',
+  display: 'flex', 
+  flexDirection: 'column'
+}
 
 export function MainPage(): React.ReactElement {
   const currentUser = useUnit($currentUser);
@@ -16,11 +24,14 @@ export function MainPage(): React.ReactElement {
   return (
     <div className={styles['main-page']}>
       <div className={styles['main-page__first-row']}>
-        <Paper className={styles['main-page__welcome']} sx={{boxShadow: 'none', borderRadius: '15px'}}>
-          Добро пожаловать, 
-          <div className={styles['main-page__welcome-name']}>
-            {currentUser?.name} 
+        <Paper className={styles['main-page__welcome']} sx={WelcomePaper}>
+          <div className={styles['main-page__welcome-text']}>
+            {WELCOME_TEXT}
+            <div className={styles['main-page__welcome-name']}>
+              {currentUser?.name} 
+            </div>
           </div>
+          {WELCOME_DESCRIPTION}
           {/* <Button onClick={() => navigateTo("/tasks-list")}>
             Список задач
           </Button> */}

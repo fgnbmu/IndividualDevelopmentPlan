@@ -1,13 +1,13 @@
-import { Paper, Select, MenuItem } from "@mui/material";
+import { Paper } from "@mui/material";
 import * as React from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
-import { getTasksDataByDate } from "../lib/utils";
 import { TaskStatuses } from "../../../shared/types";
 import { useState } from "react";
-import { TasksPeriods } from "../types";
 import styles from './task-status-analysis-period-panel.module.css';
 import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
-import { TASKS_PERIODS_OPTIONS } from "../lib/constants";
+import { TasksPeriods } from "../../../shared/types/tasks-periods";
+import { PeriodSelector } from "../../period-selector";
+import { getTasksDataByDate } from "../../../shared/lib/utils";
 
 const TaskStatusAnalysisPeriodPanelStyles = {
   borderRadius: '15px',
@@ -17,14 +17,6 @@ const TaskStatusAnalysisPeriodPanelStyles = {
   display: 'flex',
   height: 'fit-content',
   width: 510,
-};
-
-const SelectStyles = {
-  width: 130,
-  height: 24,
-  borderRadius: 10,
-  backgroundColor: '#FFFFFF',
-  padding: '15px'
 };
 
 export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
@@ -44,20 +36,10 @@ export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
           </div>
         </div>
         <div className={styles['task-status-analysis-period-panel__statuses-data']}>
-          <div className={styles['task-status-analysis-period-panel__select-container']}>
-            <Select
-              value={selectedPeriod}
-              onChange={(event) => setSelectedPeriod(event.target.value as TasksPeriods)}
-              fullWidth
-              sx={SelectStyles}
-            >
-              {Object.entries(TASKS_PERIODS_OPTIONS).map(([periodKey, periodName]) => (
-                <MenuItem key={periodKey} value={periodKey}>
-                  {periodName}
-                </MenuItem>
-              ))}
-            </Select>
-          </div>
+          <PeriodSelector 
+            selectedPeriod={selectedPeriod} 
+            onPeriodChange={setSelectedPeriod} 
+          />
           <div className={styles['task-status-analysis-period-panel__active']}>
             <div className={styles['task-status-analysis-period-panel__active-data']}>
               <div>{TASK_STATUSES_OPTIONS.active}</div>
