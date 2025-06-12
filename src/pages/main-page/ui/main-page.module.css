@@ -20,6 +20,12 @@
     font-size: 14px;
     width: fit-content;
     height: fit-content;
+    width: 40%;
+}
+
+.main-page__welcome-text {
+    display: flex;
+    gap: 5px;
 }
 
 .main-page__welcome-name {

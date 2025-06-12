@@ -1,10 +1,11 @@
 import { useUnit } from "effector-react";
-import { $tasks } from "../../../../entities/tasks";
+import { $tasks } from "../../../entities/tasks";
 import { getCurrentMonthRange } from "./get-current-month-range";
-import { countTasksByStatus, calculatePercentagesTasksByStatus } from "../../../../shared/lib/utils";
+import { countTasksByStatus } from "./count-tasks-by-status";
 import { getCurrentWeekRange } from "./get-current-week-range";
-import { TaskParams } from "../../../../shared/types/task-params";
-import { TasksPeriods } from "../../types";
+import { TaskParams } from "../../types/task-params";
+import { TasksPeriods } from "../../types/tasks-periods";
+import { calculatePercentagesTasksByStatus } from "./calculate-percentages-tasks-by-status";
 
 export const getTasksDataByDate = (period: string) => {
   const tasks = useUnit($tasks);
@@ -32,6 +33,7 @@ export const getTasksDataByDate = (period: string) => {
   const percentagesByStatus = calculatePercentagesTasksByStatus(filteredTasks.length, countFilteredTasksByStatus);
 
   return {
+    filteredTasks,
     countFilteredTasksByStatus,
     percentagesByStatus
   };
