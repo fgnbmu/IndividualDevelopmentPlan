@@ -1,0 +1,1 @@
+export { HolidayItem } from './holiday-item';

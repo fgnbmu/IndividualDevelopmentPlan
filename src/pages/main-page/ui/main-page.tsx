@@ -2,13 +2,14 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { $currentUser } from "../../../entities/users";
 
-import { Button, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { useUnit } from "effector-react";
 
 import styles from './main-page.module.css';
 import { TasksStatusAnalysisPeriodPanel } from "../../../features/task-status-analysis-period-panel";
 import { TasksByDateList } from "../../../features/tasks-by-date-list";
 import { WELCOME_DESCRIPTION, WELCOME_TEXT } from "../lib/constants";
+import { HolidayList } from "../../../features/holiday-list";
 
 const WelcomePaper = {
   boxShadow: 'none',
@@ -37,6 +38,7 @@ export function MainPage(): React.ReactElement {
           </Button> */}
         </Paper>
         <TasksStatusAnalysisPeriodPanel/>
+        <HolidayList />
       </div>
       <TasksByDateList/>
       {/* <Button onClick={() => navigateTo("/task")}>Создать таск</Button> */}
