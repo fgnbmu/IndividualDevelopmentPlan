@@ -72,4 +72,13 @@ export const TASKS_MOCK_DATA = [
         category: TaskCategories.Private,
         assignee: ['1', '2', '3'],
     },
+    {
+        id: '8',
+        title: 'Собрать вещи в путешествие',
+        date: '2025-06-11',
+        description: '',
+        status: TaskStatuses.Scheduled,
+        category: TaskCategories.Private,
+        assignee: ['1', '2', '3'],
+    },
 ];
