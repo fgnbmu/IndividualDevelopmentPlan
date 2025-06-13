@@ -1,0 +1,52 @@
+.overdue-tasks-list {
+    height: fit-content;
+    width: 500px;
+}
+
+.overdue-tasks-list__header {
+    border-bottom: 2px solid #F5F8F7;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.overdue-tasks-list__list {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.overdue-task-card {
+    background: #FFE7E7;
+    box-shadow: 0 4px 16px rgba(229, 233, 242, 0.3),
+              0 4px 4px rgba(229, 233, 242, 0.2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    width: 80%;
+}
+
+.overdue-task-card__title {
+  font-weight: 600;
+  color: #B80000;
+}
+
+.overdue-task-card__assignee-title {
+  font-weight: 500;
+  color: #B80000;
+}
+
+.overdue-task-card__date {
+  font-size: 13px;
+  font-weight: 500;
+  align-self: end;
+  color: #FF0000;
+}

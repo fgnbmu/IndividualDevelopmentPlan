@@ -7,8 +7,9 @@ import { StatusTasksCard } from "../../../widgets/status-tasks-card";
 import { TaskStatuses } from "../../../shared/types";
 
 import styles from './tasks-list-page.module.css';
-import { TasksStatusAnalysisChart } from "../../../features/task-status-analysis-chart";
 import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
+import { HolidayList } from "../../../features/holiday-list";
+import { TasksStatusAnalysisPeriodPanel } from "../../../features/task-status-analysis-period-panel";
 
 export const TasksListPage = (): React.ReactElement => {
   const tasksList = useUnit<TaskParams[]>($tasks);
@@ -21,7 +22,10 @@ export const TasksListPage = (): React.ReactElement => {
 
   return (
     <div className={styles['tasks-list']}>
-      <TasksStatusAnalysisChart/>
+      <div className={styles['tasks-list__row']}>
+        <HolidayList/>
+        <TasksStatusAnalysisPeriodPanel/>
+      </div>
       <div className={styles['tasks-list__status-tasks-cards']}>
         {Object.entries(taskLists).map(([status, tasks]) => (
           <StatusTasksCard 

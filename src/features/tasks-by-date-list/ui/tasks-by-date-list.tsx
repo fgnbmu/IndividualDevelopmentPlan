@@ -1,11 +1,12 @@
-import { Paper, Popover, Typography, List, ListItem, Divider, IconButton } from "@mui/material";
+import { Paper, Popover, Typography, List, ListItem, Divider, IconButton, Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import styles from './tasks-by-date-list.module.css';
 import { TaskByDateCard } from "./task-by-date-card";
-import { FilterAlt } from "@mui/icons-material";
+import { AddCircle, FilterAlt } from "@mui/icons-material";
 import { PeriodSelector } from "../../period-selector";
 import { TasksPeriods } from "../../../shared/types/tasks-periods";
 import { getTasksDataByDate } from "../../../shared/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 const TasksByDateListPaper = {
     height: '100%',
@@ -18,6 +19,7 @@ export function TasksByDateList(): React.ReactElement {
     const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
     const [selectedPeriod, setSelectedPeriod] = useState(TasksPeriods.Today);
     const { filteredTasks } = getTasksDataByDate(selectedPeriod);
+    const navigateTo = useNavigate();
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -33,12 +35,15 @@ export function TasksByDateList(): React.ReactElement {
         <div className={styles['tasks-by-date-list']}>
             <Paper sx={TasksByDateListPaper}>
                 <div className={styles['tasks-by-date-list__header']}>
-                    Задачи
-                    <div className={styles['tasks-by-date-list__filter-icon']}>
-                      <IconButton onClick={handleClick}>
-                        <FilterAlt />
-                      </IconButton>
-                    </div>
+                  <div className={styles['tasks-by-date-list__header-label']}>Задачи</div>
+                  <div className={styles['tasks-by-date-list__icons']}>
+                    <Tooltip title='Добавить задачу'>
+                      <IconButton onClick={() => navigateTo("/task")}><AddCircle/></IconButton>
+                    </Tooltip>
+                    <Tooltip title='Фильтр по периоду'>
+                      <IconButton onClick={handleClick}><FilterAlt /></IconButton>
+                    </Tooltip>
+                  </div>
                 </div>
                 <Popover
                     open={open}

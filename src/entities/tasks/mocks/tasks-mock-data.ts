@@ -66,9 +66,9 @@ export const TASKS_MOCK_DATA = [
     {
         id: '7',
         title: 'Приборка в квартире',
-        date: today,
+        date: '2025-06-10',
         description: '',
-        status: TaskStatuses.Closed,
+        status: TaskStatuses.Active,
         category: TaskCategories.Private,
         assignee: ['1', '2', '3'],
     },
