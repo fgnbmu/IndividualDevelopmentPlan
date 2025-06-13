@@ -8,7 +8,7 @@ import { TaskCard } from '../../task-card';
 import { StatusTasksCardTitle } from "./status-tasks-card-title";
 
 const StatusTasksCardStyles = {
-  width: 300,
+  width: '100%',
   padding: '20px',
   display: 'flex',
   flexDirection: 'column',

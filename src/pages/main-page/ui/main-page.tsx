@@ -6,10 +6,11 @@ import { Paper } from "@mui/material";
 import { useUnit } from "effector-react";
 
 import styles from './main-page.module.css';
-import { TasksStatusAnalysisPeriodPanel } from "../../../features/task-status-analysis-period-panel";
 import { TasksByDateList } from "../../../features/tasks-by-date-list";
 import { WELCOME_DESCRIPTION, WELCOME_TEXT } from "../lib/constants";
 import { HolidayList } from "../../../features/holiday-list";
+import { OverdueTasksList } from "../../../features/overdue-tasks-list";
+import { TasksStatusAnalysisChart } from "../../../features/task-status-analysis-chart";
 
 const WelcomePaper = {
   boxShadow: 'none',
@@ -24,7 +25,7 @@ export function MainPage(): React.ReactElement {
 
   return (
     <div className={styles['main-page']}>
-      <div className={styles['main-page__first-row']}>
+      <div className={styles['main-page__row']}>
         <Paper className={styles['main-page__welcome']} sx={WelcomePaper}>
           <div className={styles['main-page__welcome-text']}>
             {WELCOME_TEXT}
@@ -37,10 +38,13 @@ export function MainPage(): React.ReactElement {
             Список задач
           </Button> */}
         </Paper>
-        <TasksStatusAnalysisPeriodPanel/>
+        <TasksStatusAnalysisChart/>
         <HolidayList />
       </div>
-      <TasksByDateList/>
+      <div className={styles['main-page__row']}>
+        <TasksByDateList/>
+        <OverdueTasksList/>
+      </div>
       {/* <Button onClick={() => navigateTo("/task")}>Создать таск</Button> */}
     </div>
   )

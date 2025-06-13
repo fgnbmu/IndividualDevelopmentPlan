@@ -9,6 +9,7 @@ import { STATUS_CLASS_MAP, TASK_MENU_ACTION_OPTIONS } from "../lib/constants";
 import { useNavigate } from "react-router-dom";
 import { removeTaskEvent } from "../../../entities/tasks";
 import { RemoveTaskModal } from "../../remove-task-modal";
+import { USERS_MOCK_DATA } from "../../../entities/users";
 
 export function TaskByDateCard(props: TaskByDateCardProps): React.ReactElement {
   const { taskData } = props;
@@ -56,6 +57,17 @@ export function TaskByDateCard(props: TaskByDateCardProps): React.ReactElement {
       </div>
       <div className={`${styles["task-by-date-card__status"]} ${statusClass}`}>
         {TASK_STATUSES_OPTIONS[taskData.status as TaskStatuses]}
+      </div>
+      <div>
+        <div className={styles["task-by-date-card__assignee-title"]}>Ответственный(-ые):</div>
+          {taskData.assignee
+            ?.map((assigneeId) => {
+              const user = USERS_MOCK_DATA.find(user => user.id === assigneeId);
+              return user?.name ?? '';
+            })
+            .join(', ')
+            || 'Не указан'
+          }
       </div>
       <div className={styles["task-by-date-card__date"]}>{taskData.date}</div>
       

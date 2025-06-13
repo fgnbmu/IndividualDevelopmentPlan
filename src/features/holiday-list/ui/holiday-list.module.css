@@ -8,6 +8,7 @@
 
 .holiday-list__list {
     padding: 15px 0px;
+    gap: 10px;
 }
 
 .holiday-list__holiday {
@@ -24,4 +25,5 @@
 .holiday-list__holiday-date {
     color: #103725;
     font-weight: 600;
+    width: 120px;
 }

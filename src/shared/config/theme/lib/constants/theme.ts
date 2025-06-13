@@ -48,7 +48,8 @@ export const theme = createTheme({
       styleOverrides: {
         tooltip: {
           backgroundColor: '#DAEFE6',
-          color: '#96A09C'
+          color: '#96A09C',
+          fontSize: '12px'
         },
       },
     },

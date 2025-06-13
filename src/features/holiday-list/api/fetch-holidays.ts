@@ -7,7 +7,7 @@ export const getCurrentMonthHolidays = async (): Promise<HolidayData[]> => {
   try {
     const now = dayjs();
     const currentYear = now.year();
-    const currentMonth = 3;
+    const currentMonth = now.month() + 1;
 
     const response = await axios.get<HolidayItem[]>(
       `https://date.nager.at/api/v3/publicholidays/${currentYear}/RU`

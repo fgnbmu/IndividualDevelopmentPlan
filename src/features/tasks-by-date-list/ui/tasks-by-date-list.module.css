@@ -7,12 +7,19 @@
     border-bottom: 2px solid #F5F8F7;
     padding-bottom: 10px;
     display: flex;
+    align-items: center;
 }
 
-.tasks-by-date-list__filter-icon {
+.tasks-by-date-list__header-label {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.tasks-by-date-list__icons {
   display: flex;
   width: 100%;
   justify-content: end;
+  gap: 10px;
 }
 
 .tasks-by-date-list__list {
@@ -40,6 +47,7 @@
 .task-by-date-card__title {
   display: flex;
   align-items: start;
+  font-weight: 600;
 }
 
 .task-by-date-card__title-text {
@@ -77,5 +85,10 @@
   font-size: 13px;
   font-weight: 500;
   align-self: end;
+  color: #006838;
+}
+
+.task-by-date-card__assignee-title {
+  font-weight: 500;
   color: #006838;
 }

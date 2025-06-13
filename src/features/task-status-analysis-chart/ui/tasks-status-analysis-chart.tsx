@@ -9,6 +9,14 @@ import { TaskStatuses } from "../../../shared/types";
 import { calculatePercentagesTasksByStatus, countTasksByStatus } from "../../../shared/lib/utils";
 import { getColorForTaskStatus } from "../lib/utils";
 import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
+import styles from './tasks-status-analysis-chart.module.css';
+
+const ChartPaper = {
+  width: 'fit-content', 
+  borderRadius: '15px', 
+  padding: '25px', 
+  boxShadow: 'none'
+}
 
 export const TasksStatusAnalysisChart = (): React.ReactElement => {
   const tasks = useUnit($tasks);
@@ -24,21 +32,38 @@ export const TasksStatusAnalysisChart = (): React.ReactElement => {
   }));
 
   return (
-    <Paper sx={{width: 'fit-content', borderRadius: '15px', padding: '10px', boxShadow: 'none'}}>
-      <PieChart
-        series={[
-          {
-            data: chartData,
-            innerRadius: 70,
-            outerRadius: 90,
-            startAngle: -90,
-          },
-        ]}
-        {...TASKS_STATUS_CHART_PARAMS}
-        sx={{height: 150, width: 150}}
-      >
-        <TasksStatusChartCenterLabel />
-      </PieChart>
+    <Paper sx={ChartPaper}>
+      <div className={styles['tasks-status-analysis-chart__container']}>
+        <div className={styles['tasks-status-analysis-chart__data']}>
+          <div className={styles['tasks-status-analysis-chart__data-label']}>Анализ статусов задач</div>
+          <div className={styles['tasks-status-analysis-chart__count-tasks']}>
+            <div className={styles['tasks-status-analysis-chart__count-tasks-label']}>Всего задач:</div>
+            {totalTasks}
+          </div>
+          {Object.entries(countsByStatus).map(([statusKey, count]) => (
+            <div key={statusKey} className={styles['tasks-status-analysis-chart__count-tasks']}>
+              <div className={styles['tasks-status-analysis-chart__count-tasks-label']}>
+                {TASK_STATUSES_OPTIONS[statusKey as TaskStatuses]}:
+              </div>
+              {count}
+            </div>
+          ))}
+        </div>
+        <PieChart
+          series={[
+            {
+              data: chartData,
+              innerRadius: 70,
+              outerRadius: 90,
+              startAngle: -90,
+            },
+          ]}
+          {...TASKS_STATUS_CHART_PARAMS}
+          sx={{height: 150, width: 150}}
+        >
+          <TasksStatusChartCenterLabel />
+        </PieChart>
+      </div>
     </Paper>
   );
 };
