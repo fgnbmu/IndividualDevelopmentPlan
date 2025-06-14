@@ -47,9 +47,9 @@ export const theme = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: '#DAEFE6',
-          color: '#96A09C',
-          fontSize: '12px'
+          backgroundColor: '#006838',
+          fontSize: '12px',
+          borderRadius: '5px'
         },
       },
     },
@@ -101,5 +101,19 @@ export const theme = createTheme({
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: '10px'
+        }
+      }
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '15px'
+        }
+      }
+    }
   },
 });

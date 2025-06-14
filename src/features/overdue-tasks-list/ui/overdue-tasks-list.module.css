@@ -22,6 +22,10 @@
     overflow-y: scroll;
 }
 
+.overdue-tasks-list__empty {
+  padding-top: 15px;
+}
+
 .overdue-task-card {
     background: #FFE7E7;
     box-shadow: 0 4px 16px rgba(229, 233, 242, 0.3),

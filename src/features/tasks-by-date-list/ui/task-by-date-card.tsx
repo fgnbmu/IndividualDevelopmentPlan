@@ -10,12 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { removeTaskEvent } from "../../../entities/tasks";
 import { RemoveTaskModal } from "../../remove-task-modal";
 import { USERS_MOCK_DATA } from "../../../entities/users";
+import { TaskModal } from "../../task-modal";
 
-export function TaskByDateCard(props: TaskByDateCardProps): React.ReactElement {
+export const TaskByDateCard = (props: TaskByDateCardProps): React.ReactElement => {
   const { taskData } = props;
   const statusClass = STATUS_CLASS_MAP[taskData.status as TaskStatuses];
   const navigateTo = useNavigate();
   const [isRemoveTaskModalVisible, setIsRemoveTaskModalVisible] = useState<boolean>(false);
+  const [isTaskModalVisible, setIsTaskModalVisible] = useState<boolean>(false);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -39,6 +41,9 @@ export function TaskByDateCard(props: TaskByDateCardProps): React.ReactElement {
         break;
       case "delete":
         setIsRemoveTaskModalVisible(true)
+        break;
+      case "more":
+        setIsTaskModalVisible(true)
         break;
       default:
         () => {};
@@ -94,6 +99,11 @@ export function TaskByDateCard(props: TaskByDateCardProps): React.ReactElement {
         taskTitle={taskData.title}
         onClose={(): void => setIsRemoveTaskModalVisible(false)}
         onConfirm={handleRemoveTask}
+      />
+      <TaskModal
+        isVisible={isTaskModalVisible}
+        taskData={taskData}
+        onClose={(): void => setIsTaskModalVisible(false)}
       />
     </div>
   );

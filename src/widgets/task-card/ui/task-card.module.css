@@ -27,6 +27,7 @@
 
 .task-card__field-name {
     color: #5F5F5F;
+    width: 160px;
 }
 
 .task-card__field-value {

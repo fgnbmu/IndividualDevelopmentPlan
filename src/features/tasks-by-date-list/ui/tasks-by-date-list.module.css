@@ -32,6 +32,10 @@
     overflow-y: scroll;
 }
 
+.tasks-by-date-list__empty {
+  padding-top: 15px;
+}
+
 .task-by-date-card {
     background: #FFFFFF;
     box-shadow: 0 4px 16px rgba(229, 233, 242, 0.3),
@@ -91,4 +95,10 @@
 .task-by-date-card__assignee-title {
   font-weight: 500;
   color: #006838;
+}
+
+.tasks-by-date-list__filter-title {
+  font-size: 14px;
+  width: 140px;
+  display: flex;
 }

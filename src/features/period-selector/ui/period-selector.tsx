@@ -2,21 +2,19 @@ import { Select, MenuItem } from "@mui/material";
 import * as React from 'react';
 import { TASKS_PERIODS_OPTIONS } from "../../../shared/lib/constants";
 import { TasksPeriods } from "../../../shared/types/tasks-periods";
+import { PeriodSelectorProps } from "../types";
 
-const SelectStyles = {
-  width: 130,
-  height: 24,
-  borderRadius: 10,
-  backgroundColor: '#FFFFFF',
-  padding: '15px'
-};
+export const PeriodSelector = (props: PeriodSelectorProps): React.ReactElement => {
+  const { selectedPeriod, onPeriodChange, selectorWidth } = props;
 
-interface PeriodSelectorProps {
-  selectedPeriod: TasksPeriods;
-  onPeriodChange: (period: TasksPeriods) => void;
-}
+  const SelectStyles = {
+    width: selectorWidth || 130,
+    height: 24,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    padding: '15px'
+  };
 
-export const PeriodSelector = ({ selectedPeriod, onPeriodChange }: PeriodSelectorProps): React.ReactElement => {
   return (
     <Select
       value={selectedPeriod}

@@ -1,0 +1,1 @@
+export { UsersSelectorProps } from './users-selector-props';

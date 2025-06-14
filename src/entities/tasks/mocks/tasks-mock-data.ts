@@ -17,6 +17,8 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Active,
         category: TaskCategories.Work,
         assignee: ['1', '3'],
+        comment: 'Обязательно учесть комментарии наставника',
+        creator: '1',
     },
     {
         id: '2',
@@ -26,6 +28,8 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Closed,
         category: TaskCategories.ShoppingList,
         assignee: ['3'],
+        comment: 'Овощи лучше всего купить в магазине рядом с домом',
+        creator: '2',
     },
     {
         id: '3',
@@ -35,6 +39,7 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Scheduled,
         category: TaskCategories.Private,
         assignee: ['1'],
+        creator: '3',
     },
     {
         id: '4',
@@ -44,6 +49,7 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Active,
         category: TaskCategories.Work,
         assignee: ['1'],
+        creator: '1',
     },
     {
         id: '5',
@@ -53,6 +59,7 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Scheduled,
         category: TaskCategories.Private,
         assignee: ['2'],
+        creator: '4',
     },
     {
         id: '6',
@@ -62,6 +69,7 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Closed,
         category: TaskCategories.Private,
         assignee: ['2', '3'],
+        creator: '1',
     },
     {
         id: '7',
@@ -71,6 +79,8 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Active,
         category: TaskCategories.Private,
         assignee: ['1', '2', '3'],
+        comment: 'Протереть пыль, пропылесосить, помыть полы, помыть окна',
+        creator: '1',
     },
     {
         id: '8',
@@ -80,5 +90,6 @@ export const TASKS_MOCK_DATA = [
         status: TaskStatuses.Scheduled,
         category: TaskCategories.Private,
         assignee: ['1', '2', '3'],
+        creator: '1',
     },
 ];
