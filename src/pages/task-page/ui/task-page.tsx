@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useUnit } from 'effector-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
@@ -20,7 +20,7 @@ import styles from './task-page.module.css';
 import { TASK_VALIDATION_SCHEMA } from '../lib/constants';
 import { TaskFormParams } from '../types';
 import { $currentUser } from '../../../entities/users';
-import { ArrowBack, ArrowBackIosNew } from '@mui/icons-material';
+import { ArrowBackIosNew } from '@mui/icons-material';
 
 const IconArrowBackStyles = {color: '#006838'};
 const IconButtonStyles = {height:'fit-content'};
@@ -29,7 +29,6 @@ export const TaskPage = (): React.ReactElement => {
   const { id } = useParams<{ id: string }>();
   const [tasks, addingNewTask, updateTask] = useUnit([$tasks, addingNewTaskEvent, updateTaskEvent]);
   const currentUser = useUnit($currentUser);
-  const navigateTo = useNavigate();
 
   const { register, handleSubmit, reset, watch, control, formState: { errors } } = useForm<TaskFormParams>({
     resolver: yupResolver(TASK_VALIDATION_SCHEMA),

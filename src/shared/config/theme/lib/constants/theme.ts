@@ -114,6 +114,21 @@ export const theme = createTheme({
           borderRadius: '15px'
         }
       }
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          borderRadius: '15px',
+          padding: '10px'
+        }
+      }
+    },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          borderRadius: '15px',
+        }
+      }
     }
   },
 });
