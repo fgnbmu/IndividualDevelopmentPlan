@@ -1,0 +1,23 @@
+.task-modal__header-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.task-modal__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-modal__field {
+    display: flex;
+    gap: 10px;
+}
+
+.task-modal__field-name {
+    color: #006838;
+}
+
+.task-modal__field-value {
+    font-weight: 500;
+}
