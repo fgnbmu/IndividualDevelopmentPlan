@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers/DateField';
-import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from "@mui/material";
+import { Checkbox, FormControl, IconButton, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, Tooltip } from "@mui/material";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -19,10 +19,16 @@ import { TASK_CATEGORIES_OPTIONS, TASK_STATUSES_OPTIONS } from "../../../shared/
 import styles from './task-page.module.css';
 import { TASK_VALIDATION_SCHEMA } from '../lib/constants';
 import { TaskFormParams } from '../types';
+import { $currentUser } from '../../../entities/users';
+import { ArrowBack, ArrowBackIosNew } from '@mui/icons-material';
+
+const IconArrowBackStyles = {color: '#006838'};
+const IconButtonStyles = {height:'fit-content'};
 
 export const TaskPage = (): React.ReactElement => {
   const { id } = useParams<{ id: string }>();
   const [tasks, addingNewTask, updateTask] = useUnit([$tasks, addingNewTaskEvent, updateTaskEvent]);
+  const currentUser = useUnit($currentUser);
   const navigateTo = useNavigate();
 
   const { register, handleSubmit, reset, watch, control, formState: { errors } } = useForm<TaskFormParams>({
@@ -42,12 +48,14 @@ export const TaskPage = (): React.ReactElement => {
           status: foundTask.status,
           category: foundTask.category || '',
           assignee: foundTask.assignee || [],
+          comment: foundTask.comment,
+          creator: currentUser?.id,
         });
       }
     }
   }, [id, tasks, reset]);
 
-  const handleSaveTask = ({ title, date, status, description, category, assignee }: TaskFormParams): void => {
+  const handleSaveTask = ({ title, date, status, description, category, assignee, comment }: TaskFormParams): void => {
     if (title && date && status && assignee) {
       const formattedDate = dayjs(date).format('YYYY-MM-DD');
       const taskId = id || uuidv4();
@@ -61,6 +69,8 @@ export const TaskPage = (): React.ReactElement => {
           description,
           category,
           assignee,
+          comment,
+          creator: currentUser?.id,
         });
       } else {
         addingNewTask({ 
@@ -71,6 +81,8 @@ export const TaskPage = (): React.ReactElement => {
           description,
           category,
           assignee,
+          comment,
+          creator: currentUser?.id,
         });
       }
     
@@ -80,95 +92,113 @@ export const TaskPage = (): React.ReactElement => {
 
   return (
     <div className={styles['task-page']}>
+      <Tooltip title="Назад">
+        <IconButton sx={IconButtonStyles} onClick={() => window.history.back()}>
+          <ArrowBackIosNew sx={IconArrowBackStyles}/>
+        </IconButton>
+      </Tooltip>
       <Box 
         component="form" 
         onSubmit={handleSubmit(handleSaveTask)}
         className={styles['task-page__form']}
       >
-        <TextField
-          {...register('title')}
-          label="Название задачи"
-          variant="outlined"
-          size="small"
-          error={!!errors.title}
-          className={styles['task-page__text-field']}
-        />
-        <TextField
-          {...register('description')}
-          label="Описание"
-          variant="outlined"
-          size="small"
-          multiline
-          rows={4}
-          className={styles['task-page__text-field']}
-        />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Controller
-            name="date"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <DateField
-                label="Выберите дату"
-                size="small"
-                value={value ? dayjs(value) : null}
-                onChange={(newValue) => newValue !== null ? onChange(newValue.format('YYYY-MM-DD')) : onChange('')}
-                className={styles['task-page__date-field']}
-              />
-            )}
+        <div className={styles['task-page__main-fields']}>
+          <TextField
+            {...register('title')}
+            label="Название задачи"
+            variant="outlined"
+            size="small"
+            error={!!errors.title}
+            className={styles['task-page__text-field']}
           />
-        </LocalizationProvider>
-        <FormControl size="small" className={styles['task-page__select']}>
-          <InputLabel>Статус задачи</InputLabel>
-          <Select
-            {...register('status')}
-            label="Статус задачи"
-            value={watchedValues.status ? watchedValues.status : ''}
+          <TextField
+            {...register('description')}
+            label="Описание"
+            variant="outlined"
+            size="small"
+            multiline
+            rows={4}
+            className={styles['task-page__text-field']}
+          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Controller
+              name="date"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <DateField
+                  label="Выберите дату"
+                  size="small"
+                  value={value ? dayjs(value) : null}
+                  onChange={(newValue) => newValue !== null ? onChange(newValue.format('YYYY-MM-DD')) : onChange('')}
+                  className={styles['task-page__date-field']}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          <FormControl size="small" className={styles['task-page__select']}>
+            <InputLabel>Статус задачи</InputLabel>
+            <Select
+              {...register('status')}
+              label="Статус задачи"
+              value={watchedValues.status ? watchedValues.status : ''}
+            >
+              {Object.entries(TASK_STATUSES_OPTIONS).map(([key, name]) => (
+                <MenuItem key={key} value={key}>{name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl className={styles['task-page__select']}>
+            <InputLabel id="demo-multiple-checkbox-label">Ответственный</InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={Array.isArray(watchedValues.assignee) ? watchedValues.assignee : []}
+              {...register('assignee')}
+              input={<OutlinedInput label="Ответственный" />}
+              renderValue={(selected) => selected.map(id => USERS_MOCK_DATA.find(u => u.id === id)?.name).join(', ')}
+            >
+              {USERS_MOCK_DATA.map(user => (
+                <MenuItem key={user.id} value={user.id}>
+                  <Checkbox checked={watchedValues.assignee?.includes(user.id)} />
+                  <ListItemText primary={user.name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl size="small" className={styles['task-page__select']}>
+            <InputLabel>Категория задачи</InputLabel>
+            <Select
+              {...register('category')}
+              label="Категория задачи"
+              value={watchedValues.category ? watchedValues.category : ''}
+            >
+              {Object.entries(TASK_CATEGORIES_OPTIONS).map(([key, name]) => (
+                <MenuItem key={key} value={key}>{name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className={styles['task-page__secondary-fields']}>
+          <TextField
+            {...register('comment')}
+            label="Комментарий"
+            variant="outlined"
+            size="small"
+            multiline
+            rows={5}
+            className={styles['task-page__text-field']}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={styles['task-page__button']}
+            disabled={!(watchedValues.title && watchedValues.date && watchedValues.status && watchedValues.assignee)}
           >
-            {Object.entries(TASK_STATUSES_OPTIONS).map(([key, name]) => (
-              <MenuItem key={key} value={key}>{name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl className={styles['task-page__select']}>
-          <InputLabel id="demo-multiple-checkbox-label">Ответственный</InputLabel>
-          <Select
-            labelId="demo-multiple-checkbox-label"
-            id="demo-multiple-checkbox"
-            multiple
-            value={Array.isArray(watchedValues.assignee) ? watchedValues.assignee : []}
-            {...register('assignee')}
-            input={<OutlinedInput label="Ответственный" />}
-            renderValue={(selected) => selected.map(id => USERS_MOCK_DATA.find(u => u.id === id)?.name).join(', ')}
-          >
-            {USERS_MOCK_DATA.map(user => (
-              <MenuItem key={user.id} value={user.id}>
-                <Checkbox checked={watchedValues.assignee?.includes(user.id)} />
-                <ListItemText primary={user.name} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl size="small" className={styles['task-page__select']}>
-          <InputLabel>Категория задачи</InputLabel>
-          <Select
-            {...register('category')}
-            label="Категория задачи"
-            value={watchedValues.category ? watchedValues.category : ''}
-          >
-            {Object.entries(TASK_CATEGORIES_OPTIONS).map(([key, name]) => (
-              <MenuItem key={key} value={key}>{name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          className={styles['task-page__button']}
-          disabled={!(watchedValues.title && watchedValues.date && watchedValues.status && watchedValues.assignee)}
-        >
-          {id ? 'Сохранить изменения' : 'Создать задачу'}
-        </Button>
+            {id ? 'Сохранить изменения' : 'Создать задачу'}
+          </Button>
+        </div>
       </Box>
     </div>
   );

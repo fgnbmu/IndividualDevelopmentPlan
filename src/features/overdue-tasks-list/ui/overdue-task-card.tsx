@@ -2,7 +2,7 @@ import { USERS_MOCK_DATA } from '../../../entities/users';
 import { OverdueTaskCardProps } from '../types';
 import styles from './overdue-tasks-list.module.css';
 
-export function OverdueTaskCard(props: OverdueTaskCardProps): React.ReactElement {
+export const OverdueTaskCard = (props: OverdueTaskCardProps): React.ReactElement => {
   const { taskData } = props;
 
   return (

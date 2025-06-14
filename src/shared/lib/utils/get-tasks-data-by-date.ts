@@ -14,26 +14,26 @@ export const getTasksDataByDate = (period: string) => {
   const [monthStart, monthEnd] = getCurrentMonthRange();
   const [weekStart, weekEnd] = getCurrentWeekRange();
 
-  let filteredTasks: TaskParams[] = [];
+  let filteredByDateTasks: TaskParams[] = [];
   switch (period) {
     case TasksPeriods.Today:
-      filteredTasks = tasks.filter(task => task.date === today);
+      filteredByDateTasks = tasks.filter(task => task.date === today);
       break;
     case TasksPeriods.Week:
-      filteredTasks = tasks.filter(task => task.date >= weekStart && task.date <= weekEnd);
+      filteredByDateTasks = tasks.filter(task => task.date >= weekStart && task.date <= weekEnd);
       break;
     case TasksPeriods.Month:
-      filteredTasks = tasks.filter(task => task.date >= monthStart && task.date <= monthEnd);
+      filteredByDateTasks = tasks.filter(task => task.date >= monthStart && task.date <= monthEnd);
       break;
     default:
-      filteredTasks = [];
+      filteredByDateTasks = [];
   }
 
-  const countFilteredTasksByStatus = countTasksByStatus(filteredTasks);
-  const percentagesByStatus = calculatePercentagesTasksByStatus(filteredTasks.length, countFilteredTasksByStatus);
+  const countFilteredTasksByStatus = countTasksByStatus(filteredByDateTasks);
+  const percentagesByStatus = calculatePercentagesTasksByStatus(filteredByDateTasks.length, countFilteredTasksByStatus);
 
   return {
-    filteredTasks,
+    filteredByDateTasks,
     countFilteredTasksByStatus,
     percentagesByStatus
   };

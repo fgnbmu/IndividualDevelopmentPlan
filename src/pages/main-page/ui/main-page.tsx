@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
 import { $currentUser } from "../../../entities/users";
 
 import { Paper } from "@mui/material";
@@ -19,9 +18,8 @@ const WelcomePaper = {
   flexDirection: 'column'
 }
 
-export function MainPage(): React.ReactElement {
+export const MainPage = (): React.ReactElement => {
   const currentUser = useUnit($currentUser);
-  const navigateTo = useNavigate();
 
   return (
     <div className={styles['main-page']}>
@@ -34,9 +32,6 @@ export function MainPage(): React.ReactElement {
             </div>
           </div>
           {WELCOME_DESCRIPTION}
-          {/* <Button onClick={() => navigateTo("/tasks-list")}>
-            Список задач
-          </Button> */}
         </Paper>
         <TasksStatusAnalysisChart/>
         <HolidayList />
@@ -45,7 +40,6 @@ export function MainPage(): React.ReactElement {
         <TasksByDateList/>
         <OverdueTasksList/>
       </div>
-      {/* <Button onClick={() => navigateTo("/task")}>Создать таск</Button> */}
     </div>
   )
 };

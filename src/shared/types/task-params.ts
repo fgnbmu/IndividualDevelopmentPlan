@@ -6,4 +6,6 @@ export interface TaskParams {
     status: string;
     category?: string;
     assignee?: string[];
+    comment?: string;
+    creator?: string;
 };

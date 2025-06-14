@@ -12,7 +12,7 @@ const OverdueTasksListPaper = {
     padding: '20px',
 };
 
-export function OverdueTasksList(): React.ReactElement {
+export const OverdueTasksList = (): React.ReactElement => {
   const tasks = useUnit($tasks);
   const currentDate = new Date().toISOString().split('T')[0];
 
@@ -22,19 +22,19 @@ export function OverdueTasksList(): React.ReactElement {
       task.date < currentDate
   );
 
-  if (!filteredTasks.length) {
-    return <Paper>Нет просроченных задач</Paper>;
-  }
-
   return (
     <div className={styles['overdue-tasks-list']}>
       <Paper sx={OverdueTasksListPaper}>
         <div className={styles['overdue-tasks-list__header']}>Просроченные задачи</div>
-        <div className={styles['overdue-tasks-list__list']}>
+        {!filteredTasks.length ? (
+          <div className={styles['overdue-tasks-list__empty']}>Нет просроченных задач</div>
+        ) : (
+          <div className={styles['overdue-tasks-list__list']}>
             {filteredTasks.map((task) => (
-            <OverdueTaskCard taskData={task}/>
+              <OverdueTaskCard key={task.id} taskData={task} />
             ))}
-        </div>
+          </div>
+        )}
       </Paper>
     </div>
   );
