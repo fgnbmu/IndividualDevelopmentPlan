@@ -12,6 +12,6 @@ npm run dev
 ```
 
 ## Данные для входа
-Логин: ralph.hubbard@example.com
+Логин: anochinapo@gmail.com
 
-Пароль: password123
+Пароль: 123
