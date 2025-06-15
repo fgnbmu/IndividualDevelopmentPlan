@@ -3,6 +3,7 @@ import { getCurrentMonthHolidays } from '../api/fetch-holidays';
 import { HolidayData } from '../types';
 import { Paper } from '@mui/material';
 import styles from './holiday-list.module.css';
+import dayjs from 'dayjs';
 
 const HolidayListPaper = {
     borderRadius: '15px',
@@ -35,7 +36,7 @@ export const HolidayList = () => {
           {holidays.map(holiday => (
             <div className={styles['holiday-list__holiday']} key={`${holiday.name}-${holiday.date}`}>
               <div className={styles['holiday-list__holiday-name']}>{holiday.name}</div>
-              <div className={styles['holiday-list__holiday-date']}>{holiday.date}</div>
+              <div className={styles['holiday-list__holiday-date']}>{dayjs(holiday.date).format('DD.MM.YYYY')}</div>
             </div>
           ))}
         </div>

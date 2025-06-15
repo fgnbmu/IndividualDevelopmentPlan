@@ -8,6 +8,8 @@ import { USERS_MOCK_DATA } from "../../../entities/users";
 import { useNavigate } from "react-router-dom";
 
 const DialogTitleStyles = {justifyContent: 'space-between', display: 'flex', fontSize: '18px'};
+const EditIconStyles = {color: '#006838'};
+const CloseIconStyles = {fontSize: '22px'};
 
 export const TaskModal = (props: TaskModalProps): React.ReactElement => {
     const { isVisible, taskData, onClose } = props;
@@ -24,11 +26,11 @@ export const TaskModal = (props: TaskModalProps): React.ReactElement => {
                         <IconButton 
                             onClick={() => navigateTo(`/task/${taskData.id}`)}
                         >
-                            <Edit />
+                            <Edit sx={EditIconStyles}/>
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Закрыть">
-                        <IconButton onClick={onClose}><Close sx={{fontSize: '22px'}}/></IconButton>
+                        <IconButton onClick={onClose}><Close sx={CloseIconStyles}/></IconButton>
                     </Tooltip>
                 </div>
             </DialogTitle>

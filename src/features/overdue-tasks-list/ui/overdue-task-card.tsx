@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { USERS_MOCK_DATA } from '../../../entities/users';
 import { OverdueTaskCardProps } from '../types';
 import styles from './overdue-tasks-list.module.css';
@@ -19,7 +20,7 @@ export const OverdueTaskCard = (props: OverdueTaskCardProps): React.ReactElement
             || 'Не указан'
           }
       </div>
-        <div className={styles['overdue-task-card__date']}>{taskData.date}</div>
+        <div className={styles['overdue-task-card__date']}>{dayjs(taskData.date).format('DD.MM.YYYY')}</div>
     </div>
   );
 }

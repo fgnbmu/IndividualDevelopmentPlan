@@ -16,7 +16,9 @@ const ChartPaper = {
   borderRadius: '15px', 
   padding: '25px', 
   boxShadow: 'none'
-}
+};
+
+const ChartStyles = {height: 150, width: 150};
 
 export const TasksStatusAnalysisChart = (): React.ReactElement => {
   const tasks = useUnit($tasks);
@@ -59,7 +61,7 @@ export const TasksStatusAnalysisChart = (): React.ReactElement => {
             },
           ]}
           {...TASKS_STATUS_CHART_PARAMS}
-          sx={{height: 150, width: 150}}
+          sx={ChartStyles}
         >
           <TasksStatusChartCenterLabel />
         </PieChart>

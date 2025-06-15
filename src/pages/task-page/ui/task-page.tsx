@@ -1,3 +1,4 @@
+// task-page.ts
 import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -43,7 +44,7 @@ export const TaskPage = (): React.ReactElement => {
         reset({
           title: foundTask.title,
           description: foundTask.description || '',
-          date: dayjs(foundTask.date).format('YYYY-MM-DD'),
+          date: dayjs(foundTask.date).format('DD.MM.YYYY'),
           status: foundTask.status,
           category: foundTask.category || '',
           assignee: foundTask.assignee || [],
@@ -56,7 +57,7 @@ export const TaskPage = (): React.ReactElement => {
 
   const handleSaveTask = ({ title, date, status, description, category, assignee, comment }: TaskFormParams): void => {
     if (title && date && status && assignee) {
-      const formattedDate = dayjs(date).format('YYYY-MM-DD');
+      const formattedDate = dayjs(date, 'DD.MM.YYYY').format('YYYY-MM-DD');
       const taskId = id || uuidv4();
 
       if (id) {
@@ -126,9 +127,10 @@ export const TaskPage = (): React.ReactElement => {
               render={({ field: { onChange, value } }) => (
                 <DateField
                   label="Выберите дату"
+                  format="DD/MM/YYYY"
                   size="small"
-                  value={value ? dayjs(value) : null}
-                  onChange={(newValue) => newValue !== null ? onChange(newValue.format('YYYY-MM-DD')) : onChange('')}
+                  value={value ? dayjs(value, 'DD.MM.YYYY') : null}
+                  onChange={(newValue) => newValue !== null ? onChange(newValue.format('DD.MM.YYYY')) : onChange('')}
                   className={styles['task-page__date-field']}
                 />
               )}

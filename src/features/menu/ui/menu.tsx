@@ -10,7 +10,7 @@ import { ExitModal } from './exit-modal';
 
 const IconStyles = {
     fontSize: 22,
-    color: '#4F5459'
+    color: '#006838'
 }
 
 export const Menu = (props: MenuProps) => {
