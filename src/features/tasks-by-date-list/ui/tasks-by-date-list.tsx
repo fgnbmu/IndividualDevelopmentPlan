@@ -19,6 +19,8 @@ const TasksByDateListPaper = {
   padding: '20px',
 };
 
+const IconStyles = {color: '#006838'};
+
 const TasksByDateListPopoverList = {width: 350, height: 95};
 const TasksByDateListPopoverListItem = {width: 350};
 
@@ -52,10 +54,10 @@ export const TasksByDateList = (): React.ReactElement => {
           <div className={styles['tasks-by-date-list__header-label']}>Задачи</div>
           <div className={styles['tasks-by-date-list__icons']}>
             <Tooltip title='Добавить задачу'>
-              <IconButton onClick={() => navigateTo('/task')}><AddCircle /></IconButton>
+              <IconButton onClick={() => navigateTo('/task')}><AddCircle sx={IconStyles} /></IconButton>
             </Tooltip>
             <Tooltip title='Фильтры'>
-              <IconButton onClick={handleClick}><FilterAlt /></IconButton>
+              <IconButton onClick={handleClick}><FilterAlt sx={IconStyles} /></IconButton>
             </Tooltip>
           </div>
         </div>

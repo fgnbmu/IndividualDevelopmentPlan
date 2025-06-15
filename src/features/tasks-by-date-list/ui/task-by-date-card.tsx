@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React, { useState } from "react";
 import styles from './tasks-by-date-list.module.css';
 import { TaskByDateCardProps } from "../types";
@@ -37,13 +38,13 @@ export const TaskByDateCard = (props: TaskByDateCardProps): React.ReactElement =
   const handleTaskAction = (actionType: string) => {
     switch(actionType) {
       case "edit":
-        navigateTo(`/task/${taskData.id}`)
+        navigateTo(`/task/${taskData.id}`);
         break;
       case "delete":
-        setIsRemoveTaskModalVisible(true)
+        setIsRemoveTaskModalVisible(true);
         break;
       case "more":
-        setIsTaskModalVisible(true)
+        setIsTaskModalVisible(true);
         break;
       default:
         () => {};
@@ -65,17 +66,19 @@ export const TaskByDateCard = (props: TaskByDateCardProps): React.ReactElement =
       </div>
       <div>
         <div className={styles["task-by-date-card__assignee-title"]}>Ответственный(-ые):</div>
-          {taskData.assignee
-            ?.map((assigneeId) => {
-              const user = USERS_MOCK_DATA.find(user => user.id === assigneeId);
-              return user?.name ?? '';
-            })
-            .join(', ')
-            || 'Не указан'
-          }
+        {taskData.assignee
+          ?.map((assigneeId) => {
+            const user = USERS_MOCK_DATA.find(user => user.id === assigneeId);
+            return user?.name ?? '';
+          })
+          .join(', ')
+          || 'Не указан'
+        }
       </div>
-      <div className={styles["task-by-date-card__date"]}>{taskData.date}</div>
-      
+      <div className={styles["task-by-date-card__date"]}>
+        {dayjs(taskData.date).format('DD.MM.YYYY')}
+      </div>
+
       <Menu
         anchorEl={anchorEl}
         keepMounted
@@ -107,4 +110,4 @@ export const TaskByDateCard = (props: TaskByDateCardProps): React.ReactElement =
       />
     </div>
   );
-}
+};

@@ -7,6 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { LoginData } from '../types';
 import { LOGIN_SCHEMA } from '../lib/constants';
 
+const LoginFormBox = {
+  display: "flex",
+  flexDirection: "column",
+  gap: "1rem",
+};
+
 export const LoginForm = () => {
   const navigateTo = useNavigate();
   const methods = useForm<LoginData>({ resolver: yupResolver(LOGIN_SCHEMA) });
@@ -26,18 +32,14 @@ export const LoginForm = () => {
       loginEvent({ id: user.id, name: user.name, email: user.email });
       navigateTo("/home-page");
       reset();
-    } catch (err: any) {
-      console.error(err instanceof Error ? err.message : err.toString());
+    } catch (err) {
+      console.error(err);
     }
   };
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-      }}
+      sx={LoginFormBox}
     >
       <form onSubmit={handleSubmit(submitHandler)}>
         <Controller
