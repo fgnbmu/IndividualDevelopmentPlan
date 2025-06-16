@@ -1,5 +1,5 @@
 body:has(.not-found-page) {
-    background: #001B0F;
+    background: var(--not-found-page-background-color);
 }
 
 .not-found-page {
@@ -24,7 +24,7 @@ body:has(.not-found-page) {
 .not-found-page__header-text {
     font-size: 65px;
     font-weight: 600;
-    color: #FFFFFF;
+    color: var(--white-color);
     position: relative;
     z-index: 2;
 }
@@ -32,7 +32,7 @@ body:has(.not-found-page) {
 .not-found-page__description-text {
     font-size: 20px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: var(--white-color);
     position: relative;
     z-index: 2;
     width: 40%;

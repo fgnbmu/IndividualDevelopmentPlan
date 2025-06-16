@@ -1,5 +1,5 @@
 import { Paper, Popover, List, ListItem, Divider, IconButton, Tooltip } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './tasks-by-date-list.module.css';
 import { TaskByDateCard } from './task-by-date-card';
 import { AddCircle, FilterAlt } from '@mui/icons-material';
@@ -19,7 +19,7 @@ const TasksByDateListPaper = {
   padding: '20px',
 };
 
-const IconStyles = {color: '#006838'};
+const IconStyles = {color: 'var(--main-color)'};
 
 const TasksByDateListPopoverList = {width: 350, height: 95};
 const TasksByDateListPopoverListItem = {width: 350};
@@ -27,7 +27,11 @@ const TasksByDateListPopoverListItem = {width: 350};
 export const TasksByDateList = (): React.ReactElement => {
   const currentUser = useUnit($currentUser);
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
-  const [selectedPeriod, setSelectedPeriod] = useState(TasksPeriods.Today);
+  
+  const savedPeriod = window.localStorage.getItem('selectedPeriod');
+  const initialSelectedPeriod = savedPeriod ? JSON.parse(savedPeriod) : TasksPeriods.All;
+  const [selectedPeriod, setSelectedPeriod] = useState<TasksPeriods>(initialSelectedPeriod);
+  
   const [selectedUserId, setSelectedUserId] = useState<string>(currentUser?.id || '');
   const { filteredByDateTasks } = getTasksDataByDate(selectedPeriod);
   const filteredByUsersTasks = getTasksByUser(selectedUserId);
@@ -46,6 +50,12 @@ export const TasksByDateList = (): React.ReactElement => {
   };
 
   const isPopoverOpened = Boolean(anchorEl);
+
+  useEffect(() => {
+    if (selectedPeriod) {
+      window.localStorage.setItem('selectedPeriod', JSON.stringify(selectedPeriod));
+    }
+  }, [selectedPeriod]);
 
   return (
     <div className={styles['tasks-by-date-list']}>

@@ -8,7 +8,7 @@ import { USERS_MOCK_DATA } from "../../../entities/users";
 import { useNavigate } from "react-router-dom";
 
 const DialogTitleStyles = {justifyContent: 'space-between', display: 'flex', fontSize: '18px'};
-const EditIconStyles = {color: '#006838'};
+const EditIconStyles = {color: 'var(--main-color)'};
 const CloseIconStyles = {fontSize: '22px'};
 
 export const TaskModal = (props: TaskModalProps): React.ReactElement => {

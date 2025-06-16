@@ -15,7 +15,7 @@
 }
 
 .task-modal__field-name {
-    color: #006838;
+    color: var(--main-color);
 }
 
 .task-modal__field-value {

@@ -1,5 +1,4 @@
 import { Select, MenuItem } from "@mui/material";
-import * as React from 'react';
 import { TASKS_PERIODS_OPTIONS } from "../../../shared/lib/constants";
 import { TasksPeriods } from "../../../shared/types/tasks-periods";
 import { PeriodSelectorProps } from "../types";
@@ -11,7 +10,7 @@ export const PeriodSelector = (props: PeriodSelectorProps): React.ReactElement =
     width: selectorWidth || 130,
     height: 24,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'var(--white-color)',
     padding: '15px'
   };
 

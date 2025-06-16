@@ -1,6 +1,4 @@
-// users-selector.ts
 import { Select, MenuItem } from '@mui/material';
-import * as React from 'react';
 import { USERS_MOCK_DATA } from '../../../entities/users';
 import { $currentUser } from '../../../entities/users';
 import { useUnit } from 'effector-react';
@@ -13,7 +11,7 @@ export const UsersSelector = (props: UsersSelectorProps): React.ReactElement => 
     width: selectorWidth || 130,
     height: 24,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'var(--white-color)',
     padding: '15px'
     };
 

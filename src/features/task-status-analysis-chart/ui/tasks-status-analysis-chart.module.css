@@ -20,5 +20,5 @@
 }
 
 .tasks-status-analysis-chart__count-tasks-label {
-    color: #006838;
+    color: var(--main-color);
 }

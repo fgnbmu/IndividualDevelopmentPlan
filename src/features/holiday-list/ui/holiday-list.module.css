@@ -1,5 +1,5 @@
 .holiday-list__label {
-    color: #006838;
+    color: var(--main-color);
     font-weight: 600;
     font-size: 17px;
     border-bottom: 2px solid #F5F8F7;
@@ -17,7 +17,6 @@
 }
 
 .holiday-list__holiday-name {
-    color: #000000;
     font-weight: 600;
     width: 70%;
 }

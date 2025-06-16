@@ -5,8 +5,17 @@ html, body {
 
 body {
     font-family: 'Montserrat', Arial, sans-serif;
-    color: #021130;
-    background-color: #F5F8F7;
+    color: var(--font-color);
+    background-color: var(--backround-color);
+}
+
+:root {
+    --main-color: #006838;
+    --main-light-color: #D9E8E1;
+    --backround-color: #F5F8F7;
+    --not-found-page-background-color: #001B0F;
+    --font-color: #021130;
+    --white-color: #FFFFFF;
 }
 
 * {

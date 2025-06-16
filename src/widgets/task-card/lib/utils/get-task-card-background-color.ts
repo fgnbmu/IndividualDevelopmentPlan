@@ -9,6 +9,6 @@ export const getTaskCardBackgroundColor = (status: string): string => {
     case TaskStatuses.Scheduled:
       return '#ECF8FF';
     default:
-      return '#FFFFFF';
+      return 'var(--white-color)';
     }
 };

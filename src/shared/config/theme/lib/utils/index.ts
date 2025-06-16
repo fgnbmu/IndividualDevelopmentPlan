@@ -1,1 +1,0 @@
-export { generateColorsAsCssVariables } from './generate-colors-as-css-variables';

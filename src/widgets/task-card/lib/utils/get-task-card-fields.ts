@@ -7,7 +7,7 @@ import { TaskParams } from "../../../../shared/types/task-params";
 export const getTaskCardFields = (taskData: TaskParams) => [
   { 
     name: "Дата", 
-    value: dayjs(taskData.date).format('DD.MM.YYYY') // Преобразование даты в формат ДД.ММ.ГГГГ
+    value: dayjs(taskData.date).format('DD.MM.YYYY')
   },
   { name: "Описание", value: taskData.description?.trim() || 'Не указано' },
   { 

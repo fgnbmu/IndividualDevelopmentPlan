@@ -5,10 +5,10 @@ export const getColorForTaskStatus = (status: TaskStatuses) => {
     case TaskStatuses.Scheduled:
       return '#F7FAF9';
     case TaskStatuses.Active:
-      return '#D9E8E1';
+      return 'var(--main-light-color)';
     case TaskStatuses.Closed:
-      return '#006838';
+      return 'var(--main-color)';
     default:
-      return '#FFFFFF';
+      return 'var(--white-color)';
   }
 };

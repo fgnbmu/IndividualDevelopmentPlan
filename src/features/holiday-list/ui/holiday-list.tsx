@@ -11,7 +11,7 @@ const HolidayListPaper = {
     flexDirection: 'column',
     padding: '25px',
     boxShadow: 'none',
-    background: '#E0EAE6',
+    background: 'var(--main-light-color)',
     border: '1px solid #E8F6F0'
 
 }

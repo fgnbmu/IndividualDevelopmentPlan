@@ -1,4 +1,3 @@
-// task-page.ts
 import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,13 +22,15 @@ import { TaskFormParams } from '../types';
 import { $currentUser } from '../../../entities/users';
 import { ArrowBackIosNew } from '@mui/icons-material';
 
-const IconArrowBackStyles = {color: '#006838'};
+const IconArrowBackStyles = {color: 'var(--main-color)'};
 const IconButtonStyles = {height:'fit-content'};
 
 export const TaskPage = (): React.ReactElement => {
   const { id } = useParams<{ id: string }>();
   const [tasks, addingNewTask, updateTask] = useUnit([$tasks, addingNewTaskEvent, updateTaskEvent]);
   const currentUser = useUnit($currentUser);
+
+  const today = dayjs();
 
   const { register, handleSubmit, reset, watch, control, formState: { errors } } = useForm<TaskFormParams>({
     resolver: yupResolver(TASK_VALIDATION_SCHEMA),
@@ -90,6 +91,13 @@ export const TaskPage = (): React.ReactElement => {
     }
   };
 
+  const isValidDate = (dateStr?: string) => {
+    if (!dateStr) return false;
+    const parsedDate = dayjs(dateStr, 'DD.MM.YYYY');
+    return !parsedDate.isBefore(today) && parsedDate.isValid();
+  };
+
+
   return (
     <div className={styles['task-page']}>
       <Tooltip title="Назад">
@@ -129,6 +137,7 @@ export const TaskPage = (): React.ReactElement => {
                   label="Выберите дату"
                   format="DD/MM/YYYY"
                   size="small"
+                  shouldDisableDate={(date) => date.isBefore(today)}
                   value={value ? dayjs(value, 'DD.MM.YYYY') : null}
                   onChange={(newValue) => newValue !== null ? onChange(newValue.format('DD.MM.YYYY')) : onChange('')}
                   className={styles['task-page__date-field']}
@@ -195,7 +204,12 @@ export const TaskPage = (): React.ReactElement => {
             variant="contained"
             color="primary"
             className={styles['task-page__button']}
-            disabled={!(watchedValues.title && watchedValues.date && watchedValues.status && watchedValues.assignee)}
+            disabled={
+              !(watchedValues.title &&
+              isValidDate(watchedValues.date) &&
+              watchedValues.status &&
+              Array.isArray(watchedValues.assignee) && watchedValues.assignee.length > 0)
+            }
           >
             {id ? 'Сохранить изменения' : 'Создать задачу'}
           </Button>

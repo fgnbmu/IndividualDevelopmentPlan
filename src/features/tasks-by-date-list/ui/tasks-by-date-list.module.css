@@ -37,7 +37,7 @@
 }
 
 .task-by-date-card {
-    background: #FFFFFF;
+    background: var(--white-color);
     box-shadow: 0 4px 16px rgba(229, 233, 242, 0.3),
               0 4px 4px rgba(229, 233, 242, 0.2);
     border-radius: 15px;
@@ -69,7 +69,7 @@
     width: fit-content;
     padding: 5px 10px;
     border-radius: 15px;
-    color: #FFFFFF;
+    color: var(--white-color);
     font-size: 13px;
 }
 
@@ -89,12 +89,12 @@
   font-size: 13px;
   font-weight: 500;
   align-self: end;
-  color: #006838;
+  color: var(--main-color);
 }
 
 .task-by-date-card__assignee-title {
   font-weight: 500;
-  color: #006838;
+  color: var(--main-color);
 }
 
 .tasks-by-date-list__filter-title {

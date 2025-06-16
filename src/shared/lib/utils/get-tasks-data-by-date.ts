@@ -25,6 +25,9 @@ export const getTasksDataByDate = (period: string) => {
     case TasksPeriods.Month:
       filteredByDateTasks = tasks.filter(task => task.date >= monthStart && task.date <= monthEnd);
       break;
+    case TasksPeriods.All:
+      filteredByDateTasks = tasks;
+      break;
     default:
       filteredByDateTasks = [];
   }
