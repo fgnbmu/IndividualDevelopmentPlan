@@ -1,5 +1,4 @@
 import { Paper } from "@mui/material";
-import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { TASKS_STATUS_CHART_PARAMS } from "../lib/constants";
 import { TasksStatusChartCenterLabel } from "./tasks-status-chart-center-label";

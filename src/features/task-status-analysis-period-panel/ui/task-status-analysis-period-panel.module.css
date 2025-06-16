@@ -15,7 +15,7 @@
 }
 
 .task-status-analysis-period-panel__closed-percent {
-    color: #FFFFFF;
+    color: var(--white-color);
     font-size: 20px;
     font-weight: 600;
 }

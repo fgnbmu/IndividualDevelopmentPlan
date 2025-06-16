@@ -1,13 +1,11 @@
 .task-page {
     display: flex;
-    /* width: fit-content; */
     gap: 50px;
     padding: 100px 50px 0px 50px;
 }
 
 .task-page__form {
     display: flex;
-    /* flex-direction: column; */
     width: fit-content;
     gap: 20px;
     width: 300px;
@@ -18,7 +16,6 @@
     flex-direction: column;
     width: fit-content;
     gap: 20px;
-    /* align-items: end; */
     width: 300px;
 }
 

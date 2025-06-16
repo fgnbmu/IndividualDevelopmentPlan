@@ -1,5 +1,4 @@
 import { Paper } from "@mui/material";
-import * as React from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import { TaskStatuses } from "../../../shared/types";
 import { useState } from "react";
@@ -13,14 +12,14 @@ const TaskStatusAnalysisPeriodPanelStyles = {
   borderRadius: '15px',
   padding: '25px',
   boxShadow: 'none',
-  backgroundColor: '#006838',
+  backgroundColor: 'var(--main-color)',
   display: 'flex',
   height: 'fit-content',
   width: 510,
 };
 
 export const TasksStatusAnalysisPeriodPanel = (): React.ReactElement => {
-  const [selectedPeriod, setSelectedPeriod] = useState(TasksPeriods.Today);
+  const [selectedPeriod, setSelectedPeriod] = useState(TasksPeriods.All);
 
   const { countFilteredTasksByStatus, percentagesByStatus } = getTasksDataByDate(selectedPeriod);
 
