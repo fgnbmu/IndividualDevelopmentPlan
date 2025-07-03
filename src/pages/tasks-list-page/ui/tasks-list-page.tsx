@@ -8,8 +8,8 @@ import { TaskStatuses } from "../../../shared/types";
 
 import styles from './tasks-list-page.module.css';
 import { TASK_STATUSES_OPTIONS } from "../../../shared/lib/constants";
-import { HolidayList } from "../../../features/holiday-list";
-import { TasksStatusAnalysisPeriodPanel } from "../../../features/task-status-analysis-period-panel";
+import { HolidayList } from "../../../widgets/holiday-list";
+import { TasksStatusAnalysisPeriodPanel } from "../../../widgets/task-status-analysis-period-panel";
 
 export const TasksListPage = (): React.ReactElement => {
   const tasksList = useUnit<TaskParams[]>($tasks);

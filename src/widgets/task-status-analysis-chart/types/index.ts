@@ -1,0 +1,1 @@
+export { TasksStatusChartLabelProps } from './tasks-status-chart-label-props';

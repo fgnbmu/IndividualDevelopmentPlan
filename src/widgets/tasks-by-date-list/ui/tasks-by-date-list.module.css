@@ -1,0 +1,43 @@
+.tasks-by-date-list {
+    height: fit-content;
+    width: 500px;
+}
+
+.tasks-by-date-list__header {
+    border-bottom: 2px solid #F5F8F7;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.tasks-by-date-list__header-label {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.tasks-by-date-list__icons {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  gap: 10px;
+}
+
+.tasks-by-date-list__list {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.tasks-by-date-list__empty {
+  padding-top: 15px;
+}
+
+.tasks-by-date-list__filter-title {
+  font-size: 14px;
+  width: 140px;
+  display: flex;
+}

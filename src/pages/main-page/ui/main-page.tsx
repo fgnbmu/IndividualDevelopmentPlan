@@ -5,11 +5,11 @@ import { Paper } from "@mui/material";
 import { useUnit } from "effector-react";
 
 import styles from './main-page.module.css';
-import { TasksByDateList } from "../../../features/tasks-by-date-list";
 import { WELCOME_DESCRIPTION, WELCOME_TEXT } from "../lib/constants";
-import { HolidayList } from "../../../features/holiday-list";
-import { OverdueTasksList } from "../../../features/overdue-tasks-list";
-import { TasksStatusAnalysisChart } from "../../../features/task-status-analysis-chart";
+import { HolidayList } from "../../../widgets/holiday-list";
+import { OverdueTasksList } from "../../../widgets/overdue-tasks-list";
+import { TasksStatusAnalysisChart } from "../../../widgets/task-status-analysis-chart";
+import { TasksByDateList } from "../../../widgets/tasks-by-date-list";
 
 const WelcomePaper = {
   boxShadow: 'none',

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 import { IconButton, Tooltip } from "@mui/material"
-import { TaskStatuses } from "../../../shared/types"
 import { AddBoxRounded } from "@mui/icons-material"
 import styles from './status-tasks-card.module.css';
 import { StatusTasksCardTitleProps } from "../types";

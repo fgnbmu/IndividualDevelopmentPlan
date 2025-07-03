@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader } from "@mui/material";
 import styles from './status-tasks-card.module.css';
 
 import { StatusTasksCardProps } from '../types';
-import { TaskCard } from '../../task-card';
 import { StatusTasksCardTitle } from "./status-tasks-card-title";
+import { TaskCard } from "./task-card";
 
 const StatusTasksCardStyles = {
   width: '100%',

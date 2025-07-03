@@ -1,6 +1,6 @@
 import { TaskStatuses } from "../../types";
 import { TaskParams } from "../../types/task-params";
-import { TaskCountByStatus } from "../../../features/task-status-analysis-chart/types";
+import { TaskCountByStatus } from '../../types/tasks-count-by-status';
 
 export const countTasksByStatus = (tasks: TaskParams[]): TaskCountByStatus => {
   const result: TaskCountByStatus = {

@@ -1,0 +1,69 @@
+.task-by-date-card {
+    background: var(--white-color);
+    box-shadow: 0 4px 16px rgba(229, 233, 242, 0.3),
+              0 4px 4px rgba(229, 233, 242, 0.2);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    width: 80%;
+}
+
+.task-by-date-card__title {
+  display: flex;
+  align-items: start;
+  font-weight: 600;
+}
+
+.task-by-date-card__title-text {
+  display: flex;
+  width: 70%;
+}
+
+.task-by-date-card__title-icon {
+  display: flex;
+  width: 30%;
+  justify-content: end;
+}
+
+.task-by-date-card__statuses {
+  display: flex;
+  gap: 10px
+}
+
+.task-by-date-card__status, .task-by-date-card__status-overdue {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: var(--white-color);
+    font-size: 13px;
+}
+
+.task-by-date-card__status-overdue {
+  background: #B80000;
+}
+
+.task-by-date-card__status--active {
+  background-color: #90F095
+}
+
+.task-by-date-card__status--closed {
+  background-color: #FFA3A3
+}
+
+.task-by-date-card__status--scheduled {
+  background-color: #98D9FF
+}
+
+.task-by-date-card__date {
+  font-size: 13px;
+  font-weight: 500;
+  align-self: end;
+  color: var(--main-color);
+}
+
+.task-by-date-card__assignee-title {
+  font-weight: 500;
+  color: var(--main-color);
+}
