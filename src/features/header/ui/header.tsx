@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Menu } from '../../menu';
 import styles from './header.module.css';
 import { Add } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeaderIcon = {
   fontSize: 30,
@@ -29,9 +29,9 @@ export const Header = () => {
           <MenuIcon sx={HeaderIcon} />
         </IconButton>
         <div className={styles['header']}>
-          <div className={styles['header__app-name']}>TaskMate</div>
+          <Link to="/" className={styles['header__app-name']}>TaskMate</Link>
           <Tooltip title='Добавить задачу'>
-            <IconButton color="inherit" onClick={() => navigateTo("/task")}><Add sx={HeaderIcon}/></IconButton>
+            <IconButton color="inherit" onClick={() => navigateTo("/task/new")}><Add sx={HeaderIcon}/></IconButton>
           </Tooltip>
         </div>
       </Toolbar>

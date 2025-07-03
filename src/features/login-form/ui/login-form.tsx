@@ -10,7 +10,6 @@ import { LOGIN_SCHEMA } from '../lib/constants';
 const LoginFormBox = {
   display: "flex",
   flexDirection: "column",
-  gap: "1rem",
 };
 
 export const LoginForm = () => {
@@ -30,7 +29,7 @@ export const LoginForm = () => {
       }
 
       loginEvent({ id: user.id, name: user.name, email: user.email });
-      navigateTo("/home-page");
+      navigateTo("/");
       reset();
     } catch (err) {
       console.error(err);

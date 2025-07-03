@@ -9,4 +9,6 @@
     font-size: 20px;
     font-weight: 500;
     margin-left: 30px;
+    color: var(--white-color);
+    text-decoration: none;
 }

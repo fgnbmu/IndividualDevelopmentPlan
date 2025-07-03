@@ -29,7 +29,7 @@ export const getTasksDataByDate = (period: string) => {
       filteredByDateTasks = tasks;
       break;
     default:
-      filteredByDateTasks = [];
+      filteredByDateTasks;
   }
 
   const countFilteredTasksByStatus = countTasksByStatus(filteredByDateTasks);

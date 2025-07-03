@@ -27,10 +27,9 @@ const IconButtonStyles = {height:'fit-content'};
 
 export const TaskPage = (): React.ReactElement => {
   const { id } = useParams<{ id: string }>();
+  const isCreatingNewTask = id === 'new';
   const [tasks, addingNewTask, updateTask] = useUnit([$tasks, addingNewTaskEvent, updateTaskEvent]);
   const currentUser = useUnit($currentUser);
-
-  const today = dayjs();
 
   const { register, handleSubmit, reset, watch, control, formState: { errors } } = useForm<TaskFormParams>({
     resolver: yupResolver(TASK_VALIDATION_SCHEMA),
@@ -39,8 +38,9 @@ export const TaskPage = (): React.ReactElement => {
   const watchedValues = watch();
 
   useEffect(() => {
-    if (id) {
+    if (!isCreatingNewTask && id) {
       const foundTask = tasks.find(task => task.id === id);
+      
       if (foundTask) {
         reset({
           title: foundTask.title,
@@ -91,13 +91,6 @@ export const TaskPage = (): React.ReactElement => {
     }
   };
 
-  const isValidDate = (dateStr?: string) => {
-    if (!dateStr) return false;
-    const parsedDate = dayjs(dateStr, 'DD.MM.YYYY');
-    return !parsedDate.isBefore(today) && parsedDate.isValid();
-  };
-
-
   return (
     <div className={styles['task-page']}>
       <Tooltip title="Назад">
@@ -137,7 +130,6 @@ export const TaskPage = (): React.ReactElement => {
                   label="Выберите дату"
                   format="DD/MM/YYYY"
                   size="small"
-                  shouldDisableDate={(date) => date.isBefore(today)}
                   value={value ? dayjs(value, 'DD.MM.YYYY') : null}
                   onChange={(newValue) => newValue !== null ? onChange(newValue.format('DD.MM.YYYY')) : onChange('')}
                   className={styles['task-page__date-field']}
@@ -206,7 +198,6 @@ export const TaskPage = (): React.ReactElement => {
             className={styles['task-page__button']}
             disabled={
               !(watchedValues.title &&
-              isValidDate(watchedValues.date) &&
               watchedValues.status &&
               Array.isArray(watchedValues.assignee) && watchedValues.assignee.length > 0)
             }

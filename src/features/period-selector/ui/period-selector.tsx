@@ -7,7 +7,7 @@ export const PeriodSelector = (props: PeriodSelectorProps): React.ReactElement =
   const { selectedPeriod, onPeriodChange, selectorWidth } = props;
 
   const SelectStyles = {
-    width: selectorWidth || 130,
+    width: selectorWidth || 180,
     height: 24,
     borderRadius: 10,
     backgroundColor: 'var(--white-color)',

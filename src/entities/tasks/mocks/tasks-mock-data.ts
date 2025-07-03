@@ -3,10 +3,7 @@ import { TaskCategories, TaskStatuses } from '../../../shared/types';
 const date = new Date();
 
 const today = date.toISOString().split('T')[0];
-
-const tomorrowDate = date;
-tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-const tomorrow = tomorrowDate.toISOString().split('T')[0];
+const tomorrow = new Date(date.setDate(date.getDate() + 1)).toISOString().split('T')[0];
 
 export const TASKS_MOCK_DATA = [
     {

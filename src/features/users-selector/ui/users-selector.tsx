@@ -23,7 +23,7 @@ export const UsersSelector = (props: UsersSelectorProps): React.ReactElement => 
       fullWidth
       sx={SelectStyles}
     >
-      <MenuItem value="Все">Все</MenuItem>
+      <MenuItem value="all">Все</MenuItem>
       <MenuItem value={currentUser?.id}>Я</MenuItem>
       {USERS_MOCK_DATA
         .filter(user => user.id !== currentUser?.id)

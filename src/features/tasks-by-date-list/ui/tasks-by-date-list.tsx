@@ -29,10 +29,12 @@ export const TasksByDateList = (): React.ReactElement => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   
   const savedPeriod = window.localStorage.getItem('selectedPeriod');
+  const savedUserId = window.localStorage.getItem('selectedUserId');
   const initialSelectedPeriod = savedPeriod ? JSON.parse(savedPeriod) : TasksPeriods.All;
+  const initialSelectedUserId = savedUserId ? JSON.parse(savedUserId) : currentUser?.id;
+
   const [selectedPeriod, setSelectedPeriod] = useState<TasksPeriods>(initialSelectedPeriod);
-  
-  const [selectedUserId, setSelectedUserId] = useState<string>(currentUser?.id || '');
+  const [selectedUserId, setSelectedUserId] = useState<string>(initialSelectedUserId);
   const { filteredByDateTasks } = getTasksDataByDate(selectedPeriod);
   const filteredByUsersTasks = getTasksByUser(selectedUserId);
   const filteredTasks = filteredByDateTasks.filter(
@@ -57,6 +59,12 @@ export const TasksByDateList = (): React.ReactElement => {
     }
   }, [selectedPeriod]);
 
+   useEffect(() => {
+    if (selectedUserId) {
+      window.localStorage.setItem('selectedUserId', JSON.stringify(selectedUserId));
+    }
+  }, [selectedUserId]);
+
   return (
     <div className={styles['tasks-by-date-list']}>
       <Paper sx={TasksByDateListPaper}>
@@ -64,7 +72,7 @@ export const TasksByDateList = (): React.ReactElement => {
           <div className={styles['tasks-by-date-list__header-label']}>Задачи</div>
           <div className={styles['tasks-by-date-list__icons']}>
             <Tooltip title='Добавить задачу'>
-              <IconButton onClick={() => navigateTo('/task')}><AddCircle sx={IconStyles} /></IconButton>
+              <IconButton onClick={() => navigateTo('/task/new')}><AddCircle sx={IconStyles} /></IconButton>
             </Tooltip>
             <Tooltip title='Фильтры'>
               <IconButton onClick={handleClick}><FilterAlt sx={IconStyles} /></IconButton>

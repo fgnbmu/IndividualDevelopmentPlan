@@ -7,6 +7,7 @@ import styles from './menu.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ExitModal } from './exit-modal';
+import { logoutEvent } from '../../../entities/users';
 
 const IconStyles = {
     fontSize: 22,
@@ -20,7 +21,7 @@ export const Menu = (props: MenuProps) => {
   const [isExitModalVisible, setIsExitModalVisible] = useState<boolean>(false);
 
   const navigateToHomePage = () => {
-    navigateTo("/home-page");
+    navigateTo("/");
     onClose();
   };
 
@@ -31,7 +32,8 @@ export const Menu = (props: MenuProps) => {
 
   const handleExit = (): void => {
     setIsExitModalVisible(false);
-    navigateTo("/");
+    logoutEvent();
+    navigateTo("/auth");
     onClose();
   }
 

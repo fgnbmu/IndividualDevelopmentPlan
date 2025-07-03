@@ -7,7 +7,7 @@ export const getTasksByUser = (selectedUserId: string): TaskParams[] => {
   const currentUser = useUnit($currentUser);
   const tasks = useUnit($tasks);
 
-  if (selectedUserId === 'Все') return tasks;
+  if (selectedUserId === 'all') return tasks;
 
   return tasks.filter(task => {
     if (selectedUserId === 'me') {
