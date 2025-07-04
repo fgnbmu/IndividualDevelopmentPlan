@@ -5,7 +5,7 @@ import { Close, Edit } from "@mui/icons-material";
 import styles from './task-modal.module.css';
 import { USERS_MOCK_DATA } from "../../../entities/users";
 import { useNavigate } from "react-router-dom";
-import { getTaskCardFields } from "../../../shared/lib/utils";
+import { getTaskCardFields } from "../../../entities/tasks/utils";
 
 const DialogTitleStyles = {justifyContent: 'space-between', display: 'flex', fontSize: '18px'};
 const EditIconStyles = {color: 'var(--main-color)'};

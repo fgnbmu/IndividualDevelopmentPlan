@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
-import { USERS_MOCK_DATA } from "../../../entities/users";
-import { TASK_CATEGORIES_OPTIONS } from "../constants";
-import { TaskCategories } from "../../types";
-import { TaskParams } from "../../types/task-params";
+import { USERS_MOCK_DATA } from "../../users";
+import { TASK_CATEGORIES_OPTIONS } from "../../../shared/lib/constants";
+import { TaskCategories } from "../../../shared/types";
+import { TaskParams } from "../../../shared/types/task-params";
 
 export const getTaskCardFields = (taskData: TaskParams) => [
   { 

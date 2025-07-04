@@ -6,8 +6,8 @@ import { removeTaskEvent } from '../../../entities/tasks';
 import { getTaskCardBackgroundColor } from "../utils";
 import { TaskCardTitle } from "./task-card-title";
 import { RemoveTaskModal } from "../../../features/remove-task-modal";
-import { getTaskCardFields } from "../../../shared/lib/utils";
 import { TaskCardProps } from "../types";
+import { getTaskCardFields } from "../../../entities/tasks/utils";
 
 const CardHeaderStyles = {
   padding: '2px 2px 5px 2px',
